@@ -8,7 +8,13 @@
   <!-- css/main_style.css を読み込む（index.html と同じ階層の css フォルダ） -->
   <link rel="stylesheet" href="css/main_style.css" />
 
-  
+  <!-- Google Fonts の DotGothic16 を読み込む トップページのコマンドボタン用 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet" />
+
+
+
 
 </head>
 <body>
@@ -34,11 +40,11 @@
       <!-- レイヤー2: キャラ（透過PNG） -->
       <img class="scene-character" src="assets/images/character.png" alt="キャラクター" />
 
-       <!-- レイヤー3: コマンドパネル（TOP のみ表示・Phase 3 で動かす） -->
+      <!-- レイヤー3: コマンドパネル（TOP のみ表示・Phase 3 で動かす） -->
       <aside class="command-panel" aria-label="RPG風コマンドメニュー">
-        <div class="panel-title">Command</div>
+        <div class="panel-title">どれをみる？</div>
         
-        <!-- data-screen は Phase 3 の showScreen() で使う名前 -->
+        <!-- data-screen はshowScreen() で使う名前 -->
         <button type="button" class="command-item" data-screen="about">
           <span>About</span><small>自己紹介</small>
         </button>
@@ -48,10 +54,10 @@
         </button>
         
         <button type="button" class="command-item" data-screen="works">
-          <span>Works</span><small>制作実績</small>
+          <span>Works</span><small>制作実績</small> 
         </button>
 
-        <button type = "button" class="command-item" data-screen = "timeline">
+        <button type="button" class="command-item" data-screen="timeline">
           <span>TimeLine</span><small>経歴</small>
         </button>
         
@@ -60,12 +66,63 @@
         </button>
         
       </aside>
+      
+      <!-- レイヤー4: ジャンプバー 詳細時(Aboutなどの表示時)のみ表示するバー -->
+      <nav class="jump-bar is-hidden" aria-label="ページジャンプ">
+        <button type="button" class="jump-item" data-screen="top">TOP</button>
+        <button type="button" class="jump-item" data-screen="about">About</button>
+        <button type="button" class="jump-item" data-screen="skills">Skills</button>
+        <button type="button" class="jump-item" data-screen="works">Works</button>
+        <button type="button" class="jump-item" data-screen="timeline">Timeline</button>
+        <button type="button" class="jump-item" data-screen="contact">Contact</button>
+      </nav>
+
+      <!-- レイヤー5: 大詳細パネル（オレンジ枠イメージ・初期は非表示） -->
+      <section class="detail-panel is-hidden" aria-live="polite">
+        <button type="button" class="btn-back">戻る</button>
+
+        <div class="detail-panel__body">
+          <article class="detail-content" data-content="about">
+            <h2>About</h2>
+            <p>自己紹介（仮）。</p>
+          </article>
+
+          <article class="detail-content is-hidden" data-content="skills">
+            <h2>Skills</h2>
+            <p>スキル（仮）。</p>
+          </article>
+
+          <article class="detail-content is-hidden" data-content="works">
+            <h2>Works</h2>
+            <p>制作実績（仮）。</p>
+          </article>
+
+          <article class="detail-content is-hidden" data-content="timeline">
+            <h2>Timeline</h2>
+            <p>経歴（仮）。</p>
+          </article>
+
+          <article class="detail-content is-hidden" data-content="contact">
+            <h2>Contact</h2>
+            <p>連絡先（仮）。</p>
+          </article>
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+
 
     </div>
   </div>
 
   <!-- Phase 3 で画面切り替えを入れるときに有効化 -->
-  <!-- <script src="js/main.js"></script> -->
+  <script src="js/main_script.js"></script>
 
 </body>
 </html>

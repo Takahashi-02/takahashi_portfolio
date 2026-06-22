@@ -6,7 +6,8 @@
   box-sizing: border-box;
 }
 
-body {
+body 
+{
   margin: 0;
 }
 
@@ -18,10 +19,11 @@ body {
    - position: relative … 子要素の absolute の基準になる
    - overflow: hidden … はみ出しを切る
    ======================================== */
-#screen-top {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
+#screen-top 
+{
+  position:     relative;
+  min-height:   100vh;
+  overflow:     hidden;
 }
 
 /* ========================================
@@ -30,24 +32,31 @@ body {
    - z-index: 0 … いちばん奥
    - cover … 比率を保ったまま画面全体を覆う
    ======================================== */
-.scene-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
+.scene-bg 
+{
+  position:   absolute;
+  inset:      0;
+  z-index:    0;
+  overflow:   hidden;
 }
-.scene-bg__track {
-  display: flex;
-  width: max-content;
-  height: 100%;
-  animation: cloud-scroll 90s linear infinite;
+
+.scene-bg__track 
+{
+  display:    flex;
+  width:      max-content;
+  height:     100%;
+  animation:  cloud-scroll 90s linear infinite;
 }
-.scene-bg__tile {
-  height: 100%;
-  width: auto;
-  image-rendering: pixelated;
+
+.scene-bg__tile 
+{
+  height:           100%;
+  width:            auto;
+  image-rendering:  pixelated;
 }
-@keyframes cloud-scroll {
+
+@keyframes cloud-scroll 
+{
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
@@ -57,15 +66,16 @@ body {
    - translateY(8%) … 画像ごと少し下へ（土が隠れて草ラインが下がる）
    - #screen-top の overflow:hidden で画面外は切れる
    ======================================== */
-.scene-floor {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  z-index: 1;
-  pointer-events: none;
-  transform: translateY(16%);   /* ← 地面を下げる。6%〜12% で微調整 */
+.scene-floor 
+{
+  position:         absolute;
+  bottom:           0;
+  left:             0;
+  width:            100%;
+  height:           auto;
+  z-index:          1;
+  pointer-events:   none;
+  transform:        translateY(16%);   /* ← 地面を下げる。6%〜12% で微調整 */
 }
 
 /* ========================================
@@ -73,39 +83,107 @@ body {
    - width を小さく … キャラ全体を縮小
    - bottom を大きく … 足元を上げて草の上に乗せる
    ======================================== */
-.scene-character {
-  position: absolute;
-  bottom: 8%;                  /* ← 足の高さ。28%〜34% で微調整 */
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(16vw, 140px);      /* ← 以前は 24vw/200px。小さくした */
-  height: auto;
-  z-index: 2;
+.scene-character 
+{
+  position:   absolute;
+  bottom:     8%;                  /* ← 足の高さ。28%〜34% で微調整 */
+  left:       50%;
+  transform:  translateX(-50%);
+  width:      min(16vw, 140px);      /* ← 以前は 24vw/200px。小さくした */
+  height:     auto;
+  z-index:    2;
 }
 
 /* ========================================
    色の共通設定（参考サイトの配色）
    ======================================== */
-:root {
-  --main: #38D5F5;
-  --sub: #6BEDB9;
-  --text: #FFFFFF;
-  --line: #030303;
-  --dark: #082333;
-  --panel-strong: rgba(8, 35, 51, 0.94);
-  --shadow: 0 20px 45px rgba(3, 3, 3, 0.20);
-  --radius: 24px;
+:root 
+{
+  --main:         #FFFFFF;
+  --sub:          #FFFFFF;
+  --text:         #FFFFFF;
+  --line:         #FFFFFF;    /* 枠線：白 */
+  --dark:         #000000;
+  --panel-strong: #000000;    /* パネル背景：黒 */
+  --shadow:        none;        /* フラットな RPG 窓にするなら影オフ */
+  --radius:        0;           /* 角丸なし＝よりレトロ（好みで 4px でも可） */
 }
-body {
-  font-family: "Inter", "Noto Sans JP", sans-serif;
-  color: var(--text);
+
+body 
+{
+  font-family:  "DotGothic16", sans-serif;
+  color:        var(--text);
 }
+
+.command-panel 
+{
+  position: absolute;
+  right:          4%;
+  bottom:         38%;
+  z-index:        3;
+  width:          min(40vw, 320px);
+  padding:        20px;
+  background:     var(--panel-strong);
+  border:         3px solid var(--line);
+  border-radius:  var(--radius);
+  box-shadow:     none;
+  /* 二重枠っぽくするなら（任意） */
+  outline:        2px solid #000;
+  outline-offset: -5px;
+}
+
+.panel-title 
+{
+  margin-bottom:    12px;
+  color:            var(--text);
+  font-size:        1.1rem;
+  letter-spacing:   0.05em;
+}
+
+.command-item 
+{
+  display:          flex;
+  justify-content:  space-between;
+  align-items:      center;
+  width:            100%;
+  margin:           8px 0;
+  padding:          12px 14px;
+  background:       #000;
+  border:           2px solid var(--line);
+  border-radius:    0;
+  color:            var(--text);
+  font:             inherit;
+  text-align:       left;
+  cursor:           pointer;
+  transition:       0.15s ease;
+}
+
+.command-item:hover 
+{
+  background:   #fff;
+  color:        #000;
+  transform:      none;           /* 横スライドより反転の方が RPG っぽい */
+}
+
+.command-item span 
+{
+  font-size:      1rem;
+  font-weight:    400;
+}
+
+.command-item small 
+{
+  font-size:  0.85rem;
+  opacity:    0.9;
+}
+
 /* ========================================
    レイヤー3: コマンドパネル
    - z-index: 3 … 床・キャラより手前
    - 右下に配置（キャラと重なりにくい）
    ======================================== */
-.command-panel {
+.command-panel
+{
   position: absolute;
   right: 4%;
   bottom: 38%;
@@ -117,14 +195,18 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow), 8px 8px 0 var(--line);
 }
-.panel-title {
+
+.panel-title 
+{
   margin-bottom: 16px;
   color: var(--sub);
   font-weight: 900;
   font-size: 1.3rem;
 }
+
 /* ボタンをリンク風に見せる */
-.command-item {
+.command-item 
+{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -140,15 +222,124 @@ body {
   cursor: pointer;
   transition: 0.2s ease;
 }
-.command-item:hover {
+
+.command-item:hover 
+{
   background: var(--sub);
   color: var(--dark);
   transform: translateX(6px);
 }
-.command-item span {
+
+.command-item span 
+{
   font-size: 1.2rem;
   font-weight: 900;
 }
-.command-item small {
+
+.command-item small 
+{
   font-weight: 700;
 }
+
+/* ========================================
+   詳細モード共通: body.is-detail-open
+   ======================================== */
+
+/* 詳細中はコマンドを隠す */
+body.is-detail-open .command-panel {
+  display: none;
+}
+
+/* キャラを右下へ（赤茶丸イメージ） */
+body.is-detail-open .scene-character {
+  left: auto;
+  right: 8%;
+  bottom: 8%;
+  transform: none;
+  /* 任意: ゆっくり移動 */
+  transition: left 0.25s ease, right 0.25s ease, bottom 0.25s ease, transform 0.25s ease;
+}
+
+/* TOP に戻ったとき用（通常位置） */
+.scene-character {
+  transition: left 0.25s ease, right 0.25s ease, bottom 0.25s ease, transform 0.25s ease;
+}
+
+/* ========================================
+   ジャンプバー（ピンク枠・画面上部）
+   z-index: 5
+   ======================================== */
+.jump-bar {
+  position: absolute;
+  top: 2%;
+  left: 4%;
+  right: 4%;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #000;
+  border: 2px solid #fff;
+}
+
+.jump-bar.is-hidden {
+  display: none;
+}
+
+.jump-item {
+  padding: 8px 12px;
+  background: #000;
+  border: 2px solid #fff;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.jump-item:hover,
+.jump-item.is-active {
+  background: #fff;
+  color: #000;
+}
+
+/* ========================================
+   大詳細パネル（オレンジ枠・左〜中央）
+   z-index: 4
+   ======================================== */
+.detail-panel {
+  position: absolute;
+  top: 14%;
+  left: 4%;
+  width: min(62vw, 720px);
+  height: min(72vh, 560px);
+  padding: 20px 24px;
+  z-index: 4;
+  overflow-y: auto;
+  background: #000;
+  border: 3px solid #fff;
+  color: #fff;
+}
+
+.detail-panel.is-hidden {
+  display: none;
+}
+
+.btn-back {
+  margin-bottom: 12px;
+  padding: 8px 16px;
+  background: #000;
+  border: 2px solid #fff;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn-back:hover {
+  background: #fff;
+  color: #000;
+}
+
+.detail-content.is-hidden {
+  display: none;
+}
+
