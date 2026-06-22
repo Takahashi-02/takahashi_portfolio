@@ -17,8 +17,12 @@
   <div id="app">
     <div id="screen-top" class="screen is-active">
 
-      <!-- レイヤー0: 空（div + CSS の background-image） -->
-      <div class="scene-bg" role="img" aria-label="背景"></div>
+      <div class="scene-bg" aria-hidden="true">
+        <div class="scene-bg__track">
+          <img class="scene-bg__tile" src="assets/images/bg.png" alt="" />
+          <img class="scene-bg__tile" src="assets/images/bg.png" alt="" />
+        </div>
+      </div>
 
       <!-- レイヤー1: 床（透過PNG → 道と土だけ見える） -->
       <img class="scene-floor" src="assets/images/floor.png" alt="" />

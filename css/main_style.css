@@ -32,7 +32,22 @@ body {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("../assets/images/bg.png") center / cover no-repeat;
+  overflow: hidden;
+}
+.scene-bg__track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: cloud-scroll 90s linear infinite;
+}
+.scene-bg__tile {
+  height: 100%;
+  width: auto;
+  image-rendering: pixelated;
+}
+@keyframes cloud-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 /* ========================================
