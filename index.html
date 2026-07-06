@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet" />
-
+  
 
 
 
@@ -89,328 +89,400 @@
         <div class="detail-panel__body">
         
           <article class="detail-content" data-content="about">
-        
-              <h2>About</h2>
-                <!-- 短い自己紹介（最初から見える） -->
-                <p class="about-lead">
-                ゲーム業界のゲームプログラマ・エンジニア職を志望しています。
-                見た人に「エンジニア志望であること」と「人間味があること」が伝わる構成を目指しています。
-                </p>
 
-                <details class="about-more">
-                
-                  <summary class="btn-more">MORE</summary>
+  <h2>About</h2>
 
-                  <!-- ① 自分について（詳細） -->
-                  <section class="about-section">
-                  
-                    <h3>自分について</h3>
-                  
-                    <p>
-                      髙橋 勇喜です。ゲームプログラマ・エンジニア職を志望しています。
-                      C++ と DXライブラリを中心に、2D・3D ゲーム制作に取り組んでいます。
-                      技術だけでなく、処理の流れを追いやすい設計や、仕組みから理解することを大切にしています。
-                    </p>
+  <div class="about-hero">
 
-                    <ul class="about-list">
-                      <li>エンジニア以外でも処理の流れを追いやすい設計・コメントを付けること</li>
-                      <li>何がどの順番で動いているかを図式化し、仕組みから理解すること</li>
-                      <li>問題発生時に、表面的な修正ではなく原因の根元を確認すること</li>
-                      <li>現在の理解度に合う設計を選び、無理に難しい機能へ飛びつかないこと</li>
-                    </ul>
+    <!-- 左: 写真 + SNS -->
+    <div class="about-profile">
 
-                  </section>
-                
-                  <!-- ② Biography（旧 Timeline） -->
-                  <section class="about-section">
-                  
-                    <h3>Biography</h3>
-                    <p class="section-lead">これまでの歩み</p>
-                  
-                    <div class="bio-card">
-                    <h4>Step 01</h4>
-                    <p>C++とDXライブラリで2Dゲーム制作を開始しました。</p>
-                    </div>
-                  
-                    <div class="bio-card">
-                    <h4>Step 02</h4>
-                    <p>シーン遷移、UI、ルールロジック、プレイヤー制御を実装しました。</p>
-                    </div>
-                    
-                    <div class="bio-card">
-                    <h4>Step 03</h4>
-                    <p>当たり判定、敵AI、マップチップ描画などを追加しています。</p>
-                    </div>
-                  
-                    <div class="bio-card">
-                    <h4>Step 04</h4>
-                    <p>3Dシューティング制作を通じて、3D空間とモデル描画を学習中です。</p>
-                    </div>
-                  
-                  </section>
-                  
-                  <!-- ③ 自分の強み -->
-                  <section class="about-section">
-                  <h3>わたしの強み</h3>
-                  
-                  <div class="strength-card">
-                    <span class="strength-num">01</span>
-                    <h4>誰とでも話しやすい性格</h4>
-                    
-                    <p>
-                      在学中のティーチングアシスタントの経験や社会人時代に培った社交性を活かし、
-                      チーム内、外部とのコミュニケーションを通じて、プロジェクトの進行をスムーズにする能力があります。
-                      話しやすい環境がなければ、面白いゲームは作れないという信念を持ち、常に良好なコミュニケーションを心がけています。
-                    </p>
+      <figure class="about-photo">
+        <img src="assets/images/2025_1116_0138.jpg" alt="髙橋勇喜のプロフィール写真" width="320" height="400"/>
+      </figure>
 
-                  </div>
-                  
-                  <div class="strength-card">
-                    <span class="strength-num">02</span>
-                    <h4>問題を整理し、解決する力</h4>
-                    
-                    <p> 
-                        生じてしまった問題に対して、「なぜ」という問いを繰り返すことで抱えている課題、
-                        疑問点を洗い出し自分やチームのメンバーが理解できるまで整理することができます。
-                    </p>
-                  
-                  </div>
-                  
-                  <div class="strength-card">
-                    <span class="strength-num">03</span>
-                    <h4>学びつづける探求心</h4>
+      <div class="about-social">
+        <a class="about-social__link"
+           href="https://github.com/Takahashi-02" 
+           target="_blank" rel="noopener noreferrer" 
+           aria-label="GitHub プロフィールを開く">
 
-                    <p>
-                      常に新しい技術や機能が出続けるソフトウェア業界において、常に学び続ける姿勢を保ち続けています。
-                      在学中のゲーム制作も、参考にしたいゲームはどういう仕組みで動いているのかなどをイメージし、調べながら制作をするなど、
-                      どうすればもう1段階面白い、楽しいゲームが作れるのかを模索しながら制作を行っています
-                    </p>
-                  
-                  </div>
+          <img class="about-social__icon"
+              src="assets/images/GitHub_Invertocat_White.png"
+              alt=""
+              width="22"
+              height="22"/>
 
-                </section>
+        </a>
 
-              </details>
-
-          </article>
-
-          <article class="detail-content is-hidden" data-content="skills">
-
-              <h2>Skills</h2>
-              <p class="section-lead">C++ と DXライブラリを中心に、ゲーム制作に必要な実装を段階的に学習しています。</p>
-              
-              <div class="skill-card">              
-              
-                <h3>C++</h3>
-                <p>プレイヤー制御、シーン遷移、弾管理、状態遷移、当たり判定などの実装経験があります。</p>
-              
-              </div>
-              
-              <div class="skill-card">
-              
-                <h3>DXライブラリ</h3>
-                <p>2Dゲーム制作を中心に、描画、入力、UI、マップチップ、簡易AIを実装しています。</p>
-              
-              </div>
-              
-              <div class="skill-card">
-              
-                <h3>3D制作</h3>              
-                <p>3Dモデルの描画、空間制御、弾の管理、当たり判定を学習・制作中です。</p>
-              
-              </div>
-              
-              <div class="skill-card">
-              
-                <h3>Tools</h3>              
-                <p>Visual Studio、GIMP、HTML、CSS、JavaScript を使用しています。</p>
-              
-              </div>
-              
-              <h3 class="skills-subtitle">ツール使用歴</h3>
-              
-              <ul class="tool-list">
-              
-                <li><strong>Visual Studio</strong> — ゲーム制作のメイン環境</li>  
-                <li><strong>GIMP</strong> — 画像素材の作成・編集</li>              
-                <li><strong>HTML / CSS / JavaScript</strong> — 本ポートフォリオサイト</li>
-              
-              </ul>
-            
-            </article>
-
-          <article class="detail-content is-hidden" data-content="works">
-  
-            <h2>Works</h2>
-            <p class="section-lead">
-
-              完成作品と制作中作品を掲載しています。担当範囲と使用技術がわかる構成にしています。
-            
-            </p>
-
-
-            <!-- 作品1 -->
-            <article class="work-card">
-  
-              <span class="work-status">動画あり / コードなし</span>
-  
-              <h3>シロのマジックトレーニング</h3>
-
-              <ul class="work-meta">
-                <li><strong>ジャンル：</strong>あと出し3すくみじゃんけんゲーム</li>
-                <li><strong>制作期間：</strong>3か月</li>
-                <li><strong>制作体制：</strong>個人制作</li>
-              </ul>
-
-              <p>                
-                私がゲーム制作を始めたきっかけの作品です。C++ と DXライブラリを使用して制作しました。
-                3すくみのルールロジック、シーン遷移、UI描画などを実装しました。
-                プレイ動画で内容を確認できます。
-                動画はプレイ動画のみですが、プレイ前に会話シーン、チュートリアルの実装も行いました。
-              </p>
-  
-              <!-- スクショを足すとき:
-  
-              <img class="work-thumb" src="assets/images/works/magic-training.png" alt="シロのマジックトレーニングの画面" />
-              
-              -->
-  
-              <div class="work-tags">
-  
-                <span>DXLib</span>
-                <span>C++</span>
-                <span>Visual Studio</span>
-                <span>GIMP</span>
-  
-              </div>
-  
-            </article>
-  
-            <!-- 作品2 -->
-  
-            <article class="work-card">
-  
-              <span class="work-status work-status--progress">制作中</span>
-  
-              <h3>2Dアクションゲーム（仮）</h3>
-              
-              <ul class="work-meta">
-                <li><strong>ジャンル：</strong>2Dアクションゲーム</li>
-                <li><strong>制作期間：</strong>3か月</li>
-                <li><strong>制作体制：</strong>個人制作</li>
-              </ul>
-
-              <p>
-                私がスプライトシートを用いたキャラクターの描画、箱型を用いた当たり判定などを使用してみたくて生まれた作品です。
-                こちらもC++ と DXライブラリを使用して制作しました。
-                キャラクターの制御、箱型を用いた当たり判定、敵AI、マップチップ描画などを実装しています。
-              </p>
-  
-              <div class="work-tags">
-                <span>DXLib</span>
-                <span>C++</span>
-                <span>Visual Studio</span>
-                <span>GIMP</span>
-              </div>
-  
-            </article>
-  
-            <!-- 作品3 -->
-            <article class="work-card">
-  
-              <span class="work-status work-status--progress">制作中</span>
-  
-              <h3>3Dシューティングゲーム（仮）</h3>
-              
-              <ul class="work-meta">
-                  <li><strong>ジャンル：</strong>3Dシューティングゲーム</li>
-                  <li><strong>制作期間：</strong>現在も制作中</li>
-                  <li><strong>制作体制：</strong>個人制作</li>
-              </ul>
-
-              <p>
-                私がDXライブラリを使用して3D空間を用いた作品が作りたくて生まれた作品です。
-                こちらもC++ と DXライブラリを使用して制作しました。
-                3Dモデル描画、空間制御、プレイヤー・敵の弾管理、当たり判定を中心に実装しています。
-              </p>
-  
-              <div class="work-tags">
-                <span>DXライブラリ</span>
-                <span>C++</span>
-                <span>Visual Studio</span>
-              </div>
-  
-            </article>
-
-          </article>
-
-
-          
-          <article class="detail-content is-hidden" data-content="contact">
-  
-            <h2>Contact</h2>
-            <p class="section-lead">  
-              制作物や選考に関する連絡は、以下のメールからお願いします。
-            </p>
-  
-            <div class="contact-card">  
-            
-              <p class="contact-label">
-                メール
-              </p>
-  
-              <a
-              class="contact-mail"
-              href="mailto:taka.yuuki02@gmail.com?subject=ポートフォリオを拝見しました"
-              >
-  
-              taka.yuuki02@gmail.com
-  
-              </a>
-  
-              
-    
-            </div>
-  
-          <!-- GitHub プロフィールへのリンク（任意・APIは Phase 4.5） -->
-        <div class="contact-card">
-
-          <!-- GitHub リポジトリ一覧（API・Phase 4.5） -->
-          <div class="contact-card github-repos-card">
-          
-            <p class="contact-label">公開リポジトリ</p>
-          
-            <div id="repoList" class="repo-list" aria-live="polite">
-            
-              <p class="repo-message">Contact を開くと一覧を読み込みます。</p>
-            
-            </div>
-          
-          </div>
-  
-            <p class="contact-label">
-              GitHub
-            </p>
-  
-            <a
-  
-            class="contact-link"
-            href="https://github.com/Takahashi-02"
+        <a  class="about-social__link"
+            href="https://x.com/tkhs_gmprog"
             target="_blank"
             rel="noopener noreferrer"
-            >
-  
-            https://github.com/Takahashi-02
-  
-          </a>
-  
+            aria-label="X のプロフィールを開く"
+          >
+          
+          <img  class="about-social__icon"
+                src="assets/images/logo-white.png"
+                alt=""
+                width="22"
+                height="22"
+          />
+
+        </a>
+
+      </div>
+    </div>
+
+    <!-- 右: 自己紹介 + ゲージ -->
+    <div class="about-summary">
+
+      <h3 class="about-summary__heading">自己紹介</h3>
+      
+      <ul class="about-summary__points">
+        
+        <li>髙橋 勇喜と申します。</li>
+        <li>ゲームプログラマ・エンジニア職を志望しており、</li>
+        <li>現在はC++ と DXライブラリを中心に 2D / 3D ゲーム制作に取り組んでいます。</li>
+        <!-- <li>処理の流れが追いやすい設計と、仕組みからの理解を大切にしています。</li> -->
+      
+      </ul>
+
+      <h3 class="about-gauges__heading">直近使用ツール</h3>
+      
+      <p class="about-gauges__note">※ ゲージは使用歴（月数）の目安です。詳細は Skills を参照。</p>
+
+      <div class="tool-gauge">
+      
+        <div class="tool-gauge__label">
+          <span class="tool-gauge__name">C++</span>
+          <span class="tool-gauge__months">24ヶ月</span>
+        </div>
+      
+        <div class="tool-gauge__track">
+          <div class="tool-gauge__fill" style="--rate: 100%"></div>
+        </div>
+      
+      </div>
+
+      <div class="tool-gauge">
+      
+        <div class="tool-gauge__label">
+          <span class="tool-gauge__name">DXライブラリ</span>
+          <span class="tool-gauge__months">20ヶ月</span>
         </div>
 
-      </article>
-
+        <div class="tool-gauge__track">
+          <div class="tool-gauge__fill" style="--rate: 83%"></div>
         </div>
 
-      </section>
+      </div>
+
+      <div class="tool-gauge">
+
+        <div class="tool-gauge__label">
+          <span class="tool-gauge__name">Unity / Unreal Engine</span>
+          <span class="tool-gauge__months">6ヶ月</span>
+        </div>
+
+        <div class="tool-gauge__track">
+          <div class="tool-gauge__fill tool-gauge__fill--learning" style="--rate: 25%"></div>
+        </div>
+
+      </div>
+
+      <div class="tool-gauge">
+
+        <div class="tool-gauge__label">
+          <span class="tool-gauge__name">その他ツール（GIMP 等）</span>
+          <span class="tool-gauge__months">12ヶ月</span>
+        </div>
+
+        <div class="tool-gauge__track">
+          <div class="tool-gauge__fill" style="--rate: 50%"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <details class="about-more">
+
+    <summary class="btn-more">MORE</summary>
+
+    <section class="about-section">
+
+      <h3>制作について</h3>
+
+      <p>
+        技術だけでなく、処理の流れを追いやすい設計や、
+        仕組みから理解することを大切にしています。
+        エンジニア以外でも追えるコメント、図式化、原因の根元確認、
+        理解度に合った設計選択を意識して制作に取り組んでいます。
+      </p>
+
+    </section>
+
+    <section class="about-section">
+
+      <h3>Biography</h3>
+
+      <p class="section-lead">これまでの歩み</p>
+
+      <div class="bio-card">
+
+        <h4>Step 01</h4>
+        <p>C++とDXライブラリで2Dゲーム制作を開始しました。</p>
+
+      </div>
+
+      <div class="bio-card">
+
+        <h4>Step 02</h4>
+
+        <p>シーン遷移、UI、ルールロジック、プレイヤー制御を実装しました。</p>
+
+      </div>
+
+      <div class="bio-card">
+
+        <h4>Step 03</h4>
+
+        <p>当たり判定、敵AI、マップチップ描画などを追加しています。</p>
+
+      </div>
+
+      <div class="bio-card">
+
+        <h4>Step 04</h4>
+
+        <p>3Dシューティング制作を通じて、3D空間とモデル描画を学習中です。</p>
+
+      </div>
+
+    </section>
+
+  </details>
+
+</article>
+
+  <article class="detail-content is-hidden" data-content="skills">
+
+      <h2>Skills</h2>
+      <p class="section-lead">C++ と DXライブラリを中心に、ゲーム制作に必要な実装を段階的に学習しています。</p>
+      
+      <div class="skill-card">              
+      
+        <h3>C++</h3>
+        <p>プレイヤー制御、シーン遷移、弾管理、状態遷移、当たり判定などの実装経験があります。</p>
+      
+      </div>
+      
+      <div class="skill-card">
+      
+        <h3>DXライブラリ</h3>
+        <p>2Dゲーム制作を中心に、描画、入力、UI、マップチップ、簡易AIを実装しています。</p>
+      
+      </div>
+      
+      <div class="skill-card">
+      
+        <h3>3D制作</h3>              
+        <p>3Dモデルの描画、空間制御、弾の管理、当たり判定を学習・制作中です。</p>
+      
+      </div>
+      
+      <div class="skill-card">
+      
+        <h3>Tools</h3>              
+        <p>Visual Studio、GIMP、HTML、CSS、JavaScript を使用しています。</p>
+      
+      </div>
+      
+      <h3 class="skills-subtitle">ツール使用歴</h3>
+      
+      <ul class="tool-list">
+      
+        <li><strong>Visual Studio</strong> — ゲーム制作のメイン環境</li>  
+        <li><strong>GIMP</strong> — 画像素材の作成・編集</li>              
+        <li><strong>HTML / CSS / JavaScript</strong> — 本ポートフォリオサイト</li>
+      
+      </ul>
+    
+    </article>
+
+  <article class="detail-content is-hidden" data-content="works">
+  
+    <h2>Works</h2>
+    <p class="section-lead">
+
+      完成作品と制作中作品を掲載しています。担当範囲と使用技術がわかる構成にしています。
+    
+    </p>
+
+
+    <!-- 作品1 -->
+    <article class="work-card">
+
+      <span class="work-status">動画あり / コードなし</span>
+
+      <h3>シロのマジックトレーニング</h3>
+
+      <ul class="work-meta">
+        <li><strong>ジャンル：</strong>あと出し3すくみじゃんけんゲーム</li>
+        <li><strong>制作期間：</strong>3か月</li>
+        <li><strong>制作体制：</strong>個人制作</li>
+      </ul>
+
+      <p>                
+        私がゲーム制作を始めたきっかけの作品です。C++ と DXライブラリを使用して制作しました。
+        3すくみのルールロジック、シーン遷移、UI描画などを実装しました。
+        プレイ動画で内容を確認できます。
+        動画はプレイ動画のみですが、プレイ前に会話シーン、チュートリアルの実装も行いました。
+      </p>
+  
+      <!-- スクショを足すとき:
+
+      <img class="work-thumb" src="assets/images/works/magic-training.png" alt="シロのマジックトレーニングの画面" />
+      
+      -->
+
+      <div class="work-tags">
+
+        <span>DXLib</span>
+        <span>C++</span>
+        <span>Visual Studio</span>
+        <span>GIMP</span>
+
+      </div>
+
+    </article>
+  
+    <!-- 作品2 -->
+    <article class="work-card">
+
+      <span class="work-status work-status--progress">制作中</span>
+
+      <h3>2Dアクションゲーム（仮）</h3>
+      
+      <ul class="work-meta">
+        <li><strong>ジャンル：</strong>2Dアクションゲーム</li>
+        <li><strong>制作期間：</strong>3か月</li>
+        <li><strong>制作体制：</strong>個人制作</li>
+      </ul>
+
+      <p>
+        私がスプライトシートを用いたキャラクターの描画、箱型を用いた当たり判定などを使用してみたくて生まれた作品です。
+        こちらもC++ と DXライブラリを使用して制作しました。
+        キャラクターの制御、箱型を用いた当たり判定、敵AI、マップチップ描画などを実装しています。
+      </p>
+
+      <div class="work-tags">
+        <span>DXLib</span>
+        <span>C++</span>
+        <span>Visual Studio</span>
+        <span>GIMP</span>
+      </div>
+
+    </article>
+    
+    <!-- 作品3 -->
+    <article class="work-card">
+
+      <span class="work-status work-status--progress">制作中</span>
+
+      <h3>3Dシューティングゲーム（仮）</h3>
+      
+      <ul class="work-meta">
+          <li><strong>ジャンル：</strong>3Dシューティングゲーム</li>
+          <li><strong>制作期間：</strong>現在も制作中</li>
+          <li><strong>制作体制：</strong>個人制作</li>
+      </ul>
+
+      <p>
+        私がDXライブラリを使用して3D空間を用いた作品が作りたくて生まれた作品です。
+        こちらもC++ と DXライブラリを使用して制作しました。
+        3Dモデル描画、空間制御、プレイヤー・敵の弾管理、当たり判定を中心に実装しています。
+      </p>
+
+      <div class="work-tags">
+        <span>DXライブラリ</span>
+        <span>C++</span>
+        <span>Visual Studio</span>
+      </div>
+
+    </article>
+
+  </article>
+
+  <article class="detail-content is-hidden" data-content="contact">
+
+    <h2>Contact</h2>  
+    
+    <p class="section-lead">  
+      制作物や選考に関する連絡は、以下のメールからお願いします。
+    </p>
+
+    <div class="contact-card">  
+    
+      <p class="contact-label">
+        メール
+      </p>
+
+      <a
+      class="contact-mail"
+      href="mailto:taka.yuuki02@gmail.com?subject=ポートフォリオを拝見しました"
+      >
+
+      taka.yuuki02@gmail.com
+
+      </a>
+
+      
+
+    </div>
+  
+    <!-- GitHub プロフィールへのリンク（任意・APIは Phase 4.5） -->
+  <div class="contact-card">
+
+    <!-- GitHub リポジトリ一覧（API・Phase 4.5） -->
+    <div class="contact-card github-repos-card">
+    
+      <p class="contact-label">公開リポジトリ</p>
+    
+      <div id="repoList" class="repo-list" aria-live="polite">
+      
+        <p class="repo-message">Contact を開くと一覧を読み込みます。</p>
+      
+      </div>
+          
+    </div>
+  
+    <p class="contact-label">
+        GitHub
+      </p>
+
+      <a
+
+      class="contact-link"
+      href="https://github.com/Takahashi-02"
+      target="_blank"
+      rel="noopener noreferrer"
+      >
+
+      https://github.com/Takahashi-02
+
+    </a>
+
+  </div>
+
+  </article>
+
+     </div>
+
+    </section>
 
     </div>
   </div>

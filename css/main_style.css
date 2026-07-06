@@ -107,6 +107,14 @@ body
   --panel-strong: #000000;    /* パネル背景：黒 */
   --shadow:        none;        /* フラットな RPG 窓にするなら影オフ */
   --radius:        0;           /* 角丸なし＝よりレトロ（好みで 4px でも可） */
+
+  /* パネル背景：半透明の黒（0.0=透明 ～ 1.0=不透明） */
+  --panel-strong: rgba(0, 0, 0, 0.55);
+  
+  /* 任意：すりガラス風 */
+  --panel-blur: blur(6px);
+  --shadow:       none;
+  --radius:       0;
 }
 
 body 
@@ -165,8 +173,7 @@ body
    - z-index: 3 … 床・キャラより手前
    - 右下に配置（キャラと重なりにくい）
    ======================================== */
-.command-panel
-{
+.command-panel {
   position: absolute;
   right: 4%;
   bottom: 20%;
@@ -177,6 +184,9 @@ body
   border: 3px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow), 8px 8px 0 var(--line);
+  /* 背景が動いても文字を読みやすく */
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
 }
 
 .panel-title 
@@ -272,6 +282,10 @@ body.is-detail-open .scene-character
   padding: 8px;        /* 内側の余白を少し減らす */
   background: #000;
   border: 2px solid #fff;
+
+  background: var(--panel-strong);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
 }
 
 .jump-bar.is-hidden 
@@ -314,6 +328,12 @@ body.is-detail-open .scene-character
   background: #000;
   border: 3px solid #fff;
   color: #fff;
+
+  background: var(--panel-strong);
+  border: 3px solid #fff;
+  color: #fff;
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
 
   /* フェード演出用 */
   opacity: 1;
@@ -364,13 +384,134 @@ body.is-detail-open .scene-character
    About 画面のスタイル
    - .about-lead … リード文（最初の説明）
    ======================================== */
-.about-lead {
-  margin-bottom: 16px;
+/* About: ファーストビュー 2カラム */
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(140px, 32%) 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.about-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about-photo {
+  margin: 0;
+  border: 3px solid #fff;
+  background: #111;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-social {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.about-social__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 44px;
+  border: 2px solid #fff;
+  background: #000;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.about-social__link:hover,
+.about-social__link:focus-visible {
+  background: #fff;
+}
+
+/* 白 PNG アイコン: ホバーで背景が白くなるため反転 */
+.about-social__link:hover .about-social__icon,
+.about-social__link:focus-visible .about-social__icon {
+  filter: invert(1);
+}
+
+.about-social__icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.about-summary__heading,
+.about-gauges__heading {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  padding-bottom: 4px;
+}
+
+.about-summary__points {
+  margin: 0 0 16px;
+  padding-left: 1.2em;
   line-height: 1.7;
 }
+
+.about-gauges__note {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.tool-gauge {
+  margin-bottom: 12px;
+}
+
+.tool-gauge__label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.tool-gauge__months {
+  opacity: 0.85;
+  font-size: 0.85rem;
+}
+
+.tool-gauge__track {
+  height: 14px;
+  border: 2px solid #fff;
+  background: #000;
+  padding: 2px;
+}
+
+.tool-gauge__fill {
+  height: 100%;
+  width: var(--rate, 0%);
+  background: #fff;
+  transition: width 0.6s ease;
+}
+
+.tool-gauge__fill--learning {
+  background: rgba(255, 255, 255, 0.65);
+}
+
 .about-more {
   margin-top: 8px;
+  text-align: right;
 }
+
+.about-more .about-section {
+  text-align: left;
+}
+
 .btn-more {
   display: inline-block;
   margin-bottom: 16px;
@@ -394,24 +535,28 @@ body.is-detail-open .scene-character
   margin-bottom: 12px;
   opacity: 0.9;
 }
-.bio-card,
-.strength-card {
+.bio-card {
   margin: 12px 0;
   padding: 12px 14px;
   border: 2px solid #fff;
 }
-.strength-num {
-  display: inline-block;
-  margin-bottom: 8px;
-  font-weight: bold;
+
+@media (max-width: 768px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .about-profile {
+    max-width: 240px;
+    margin: 0 auto;
+    width: 100%;
+  }
 }
 
-.about-list {
-  margin: 12px 0;
-  padding-left: 1.2em;
-  line-height: 1.7;
-}
 
+/* ========================================
+   Skills 画面
+   ======================================== */
 .skill-card {
   margin: 12px 0;
   padding: 12px 14px;
@@ -425,6 +570,7 @@ body.is-detail-open .scene-character
   line-height: 1.8;
   padding-left: 1.2em;
 }
+
 
 /* ========================================
    Works 画面
