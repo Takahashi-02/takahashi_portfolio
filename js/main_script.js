@@ -7,66 +7,107 @@ const GITHUB_USERNAME = 'Takahashi-02';
 
 let reposLoaded = false;
 
+const FADE_MS = 250;
+const CONTENT_FADE_MS = 200;
+let isTransitioning = false;
 
-function showScreen(name) 
-{
 
-    if (!VALID_SCREENS.includes(name)) 
-    {
-    console.warn('未知の画面名:', name);
-    return;
-    }
 
-    if (currentScreen === name) 
-    {
-    return;
-    }
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
 
-    currentScreen = name;
-  
-    const isTop = (name === 'top');
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
-    // 詳細モード ON/OFF（キャラ移動・コマンド非表示もここで制御）
-    document.body.classList.toggle('is-detail-open', !isTop);
+function applyScreenChange(name) {
+  const isTop = (name === 'top');
 
-    // ジャンプバー
-    const jumpBar = document.querySelector('.jump-bar');
-    
-    if (jumpBar) 
-    {
-        jumpBar.classList.toggle('is-hidden', isTop);
-    }
+  document.body.classList.toggle('is-detail-open', !isTop);
 
-    // 大詳細パネル
-    const detailPanel = document.querySelector('.detail-panel');
-    
-    if (detailPanel) 
-    {
-        detailPanel.classList.toggle('is-hidden', isTop);
-    }
+  const jumpBar = document.querySelector('.jump-bar');
+  if (jumpBar) {
+    jumpBar.classList.toggle('is-hidden', isTop);
+  }
 
-  // パネル内コンテンツの切り替え
-    document.querySelectorAll('.detail-content').forEach((el) => 
-        {
-        const contentName   = el.getAttribute('data-content');
-        const isTarget      = !isTop && contentName === name;
-        el.classList.toggle('is-hidden', !isTarget);
-        });
+  const detailPanel = document.querySelector('.detail-panel');
+  if (detailPanel) {
+    detailPanel.classList.toggle('is-hidden', isTop);
+  }
 
-  // ジャンプバーの現在位置ハイライト
-  document.querySelectorAll('.jump-item[data-screen]').forEach((btn) => 
-    {
+  document.querySelectorAll('.detail-content').forEach((el) => {
+    const contentName = el.getAttribute('data-content');
+    const isTarget = !isTop && contentName === name;
+    el.classList.toggle('is-hidden', !isTarget);
+  });
+
+  document.querySelectorAll('.jump-item[data-screen]').forEach((btn) => {
     const target = btn.getAttribute('data-screen');
     const active = isTop ? (target === 'top') : (target === name);
     btn.classList.toggle('is-active', active);
-    });
+  });
 
-    // Contact 表示時に GitHub リポジトリを取得（1回だけ）
-    if (name === 'contact' && !reposLoaded) {
-        loadGitHubRepos();
+  if (name === 'contact' && !reposLoaded) {
+    loadGitHubRepos();
+  }
+}
+
+async function showScreen(name) {
+  if (!VALID_SCREENS.includes(name)) {
+    console.warn('未知の画面名:', name);
+    return;
+  }
+
+  if (currentScreen === name || isTransitioning) {
+    return;
+  }
+
+  const prevScreen = currentScreen;
+  const nextIsTop = (name === 'top');
+  const prevIsTop = (prevScreen === 'top');
+  const detailPanel = document.querySelector('.detail-panel');
+  const panelBody = document.querySelector('.detail-panel__body');
+
+  isTransitioning = true;
+
+  try {
+    if (prefersReducedMotion()) {
+      currentScreen = name;
+      applyScreenChange(name);
+      return;
     }
 
-    
+    const isDetailToDetail = !prevIsTop && !nextIsTop;
+
+    // 詳細 → 詳細: 中身だけ一度暗くしてから差し替え
+    if (isDetailToDetail && panelBody) {
+      panelBody.classList.add('is-fading');
+      await wait(CONTENT_FADE_MS);
+      currentScreen = name;
+      applyScreenChange(name);
+      panelBody.classList.remove('is-fading');
+      await wait(CONTENT_FADE_MS);
+      return;
+    }
+
+    // 今見えているパネルをフェードアウト
+    if (!prevIsTop && detailPanel) {
+      detailPanel.classList.add('is-hidden');
+      await wait(FADE_MS);
+    }
+
+    currentScreen = name;
+    applyScreenChange(name);
+
+    // 新しいパネルをフェードイン
+    if (!nextIsTop && detailPanel) {
+      detailPanel.classList.remove('is-hidden');
+      await wait(FADE_MS);
+    }
+  } finally {
+    isTransitioning = false;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => 
