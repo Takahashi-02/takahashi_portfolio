@@ -83,15 +83,23 @@ body
    - width を小さく … キャラ全体を縮小
    - bottom を大きく … 足元を上げて草の上に乗せる
    ======================================== */
-.scene-character 
-{
-  position:   absolute;
-  bottom:     8%;                  /* ← 足の高さ。28%〜34% で微調整 */
-  left:       70%;
-  transform:  translateX(-50%);
-  width:      min(16vw, 140px);      /* ← 以前は 24vw/200px。小さくした */
-  height:     auto;
-  z-index:    2;
+.scene-character {
+  position: absolute;
+  bottom: 8%;
+  left: 70%;
+  transform: translateX(-50%);
+  width: min(16vw, 140px);   /* 小さくする指定を戻す */
+  height: auto;
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+body.is-detail-open .scene-character {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* ========================================
@@ -248,23 +256,6 @@ body.is-detail-open .command-panel
   display: none;
 }
 
-/* キャラを右下へ（赤茶丸イメージ） */
-body.is-detail-open .scene-character 
-{
-  left:         auto;
-  right:        8%;
-  bottom:       8%;
-  transform:    none;
-
-  /*ゆっくり移動する*/
-  transition:   left 0.25s ease, right 0.25s ease, bottom 0.25s ease, transform 0.25s ease;
-}
-
-/* TOP に戻ったとき用（通常位置） */
-.scene-character 
-{
-  transition: left 0.25s ease, right 0.25s ease, bottom 0.25s ease, transform 0.25s ease;
-}
 
 /* ========================================
    ジャンプバー（ピンク枠・画面上部）
@@ -323,8 +314,8 @@ body.is-detail-open .scene-character
   position: absolute;
   top: 12%;
   left: 2%;
-  width: calc(100% - 180px);
-  max-width: 1150px;
+  width: 96%;
+  max-width: none;
   height: min(72vh, 600px);
   padding: 20px 24px;
   z-index: 4;
@@ -353,6 +344,13 @@ body.is-detail-open .scene-character
   flex-direction: column;
 }
 
+.detail-panel__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  transition: opacity 0.2s ease;
+  width: 100%; 
+}
 
 .detail-panel.is-hidden 
 {
@@ -400,6 +398,13 @@ body.is-detail-open .scene-character
   background: #fff;
   color: #000;
 }
+
+.detail-content {
+  max-width: 1150px;
+  width: 100%;
+  margin-right: auto;  /* 左寄せ → 右が余白 */
+}
+
 
 .detail-content.is-hidden 
 {
@@ -553,7 +558,7 @@ body.is-detail-open .scene-character
 .tool-gauge__track {
   height: 14px;
   border: 2px solid #fff;
-  background: #000;
+  background: #000000;
   padding: 2px;
 }
 
@@ -585,17 +590,21 @@ body.is-detail-open .scene-character
 
 .about-values__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, auto);  /* 1fr → auto */
+  justify-content: center;                 /* まとめて中央へ */
   justify-items: center;
-  gap: 16px 24px;
-  margin: 20px auto;
-  max-width: 520px;
+  gap: 16px 120px;                          /* 好みで調整 */
+  width: 100%;
+  max-width: none;
+  margin: 28px auto 20px;
 }
 
-
-.about-value-btn--1 {
-  grid-column: 1 / -1;
+.detail-content[data-content="about-value-1"],
+.detail-content[data-content="about-value-2"],
+.detail-content[data-content="about-value-3"] {
+  max-width: none;
 }
+
 
 .about-value-btn {
 
@@ -823,7 +832,9 @@ body.is-detail-open .scene-character
  
 
   body.is-detail-open .scene-character {
-    bottom: 5%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   }
 
   /* 必要なら床も微調整（草のラインを合わせる） */
@@ -846,9 +857,9 @@ body.is-detail-open .scene-character
 
   /* 詳細時: 右下に小さく */
   body.is-detail-open .scene-character {
-    right: 4%;
-    bottom: 4%;
-    width: min(18vw, 72px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   }
 
   /* コマンドパネル */
@@ -894,6 +905,10 @@ body.is-detail-open .scene-character
     grid-area: summary;   /* ← 追加 */
   }
 
+  .about-values__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
   
   /* 詳細パネル: キャラ分の固定余白をやめる */
   .detail-panel {
@@ -930,9 +945,9 @@ body.is-detail-open .scene-character
   }
 
   body.is-detail-open .scene-character {
-    right: 3%;
-    bottom: 1%;
-    width: min(22vw, 56px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   }
 
   .about-hero {
@@ -1001,15 +1016,32 @@ body.is-detail-open .scene-character
 
 .about-value-layout {
   display: grid;
-  grid-template-columns: 48px 1fr 48px;
+  grid-template-columns: 48px minmax(0, 40rem) 48px minmax(160px, 1fr);
   align-items: center;
-  gap: 8px 12px;
+  column-gap: 12px;
   min-height: 100%;
+  width: 100%;
+  padding-left: 100px;   /* 24〜48px くらいで調整 */
 }
 
 .about-value-body {
-  max-width: 42rem;
-  margin: 0 auto;
+  max-width: none;   /* 列幅で制限する */
+  margin: 0;         /* 中央寄せをやめて左寄せ */
+}
+
+.about-value-character {
+  display: flex;
+  align-items: flex-end;   /* 足元を下に */
+  justify-content: center;  /* center → flex-end */
+  padding-right: 16px;        /* 任意 */
+  min-height: 200px;       /* 仮の高さ。画像後に調整 */
+  pointer-events: none;    /* 誤クリック防止（任意） */
+}
+
+.about-value-character img {
+  width: min(28vw, 220px);
+  height: auto;
+  display: block;
 }
 
 .about-value-nav {
@@ -1025,7 +1057,51 @@ body.is-detail-open .scene-character
   font-size: 1.25rem;
 }
 
+.about-value-nav i {
+  transition: transform 0.15s ease;
+}
+
+.about-value-nav--next:hover i,
+.about-value-nav--next:focus-visible i {
+  transform: translateX(3px);   /* 右へ少し */
+}
+
+.about-value-nav--prev:hover i,
+.about-value-nav--prev:focus-visible i {
+  transform: translateX(-3px);  /* 左へ少し */
+}
+
+
 .about-value-nav.is-placeholder {
   visibility: hidden;
   pointer-events: none;
+}
+
+.about-bio__viewport {
+  height: min(58vh, 480px);   /* 時代1枚分の「窓」 */
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.bio-era {
+  min-height: 100%;
+  scroll-snap-align: start;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(140px, 0.8fr);
+  gap: 20px 28px;
+  align-items: center;
+  opacity: 0.35;              /* 非アクティブはやや薄く */
+  transition: opacity 0.35s ease;
+}
+
+.bio-era.is-active {
+  opacity: 1;
+}
+
+.bio-era__art img {
+  width: min(28vw, 200px);
+  height: auto;
+  display: block;
+  margin-left: auto;
 }

@@ -209,6 +209,10 @@ document.addEventListener('DOMContentLoaded', () =>
       });
     });
 
+
+    // DOMContentLoaded 内で呼ぶ
+    initBiographyScroll();
+
 });
 
 async function loadGitHubRepos() 
@@ -270,3 +274,24 @@ document.querySelectorAll('.about-value-btn[data-screen], .about-value-nav[data-
   showScreen(button.getAttribute('data-screen'));
   });
 });
+
+function initBiographyScroll() {
+  const viewport = document.querySelector('.about-bio__viewport');
+  const eras = document.querySelectorAll('.bio-era');
+  if (!viewport || !eras.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          eras.forEach((era) => era.classList.remove('is-active'));
+          entry.target.classList.add('is-active');
+        }
+      });
+    },
+    { root: viewport, threshold: 0.55 }
+  );
+
+  eras.forEach((era) => observer.observe(era));
+}
+

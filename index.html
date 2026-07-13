@@ -183,22 +183,25 @@
       <h3>制作で意識していること</h3>
         
         <p class="about-values__lead">
-          ３つの要素に切り分けております。<br>
+          ３つの要素に切り分けています。<br>
           クリックでその要素の詳細が閲覧できます。
         </p>
 
         <div class="about-values__grid" role="group" aria-label="制作で意識していること">
         
           <button type="button" class="about-value-btn about-value-btn--1" data-screen="about-value-1">
-            仕組みから理解することを重視
+            仕組みから<br>
+            理解することを重視
           </button>
 
           <button type="button" class="about-value-btn about-value-btn--2" data-screen="about-value-2">
-            コードの理解と保守性を意識した設計
+            コードの理解と<br>
+            保守性を意識した設計
           </button>
         
           <button type="button" class="about-value-btn about-value-btn--3" data-screen="about-value-3">
-            他者へ伝わるコードを意識
+            他者へ伝わる<br>
+            コードを意識
           </button>
         
         </div>
@@ -207,39 +210,107 @@
 
     <section class="about-section">
 
-      <h3>Biography</h3>
+      <header class="about-bio__header">
+        <h3>Biography</h3>
         <p class="section-lead">これまでの歩み</p>
+      </header>
 
-          <div class="bio-card">
-              <h4>大学生時代</h4>
-              <p>
-                大学では心理学を専攻しており、児童や人間の心情心理を知るために主に対人心理、発達心理学を学んでいました。<br>
-                大学以外では、ボランティアサークルで副会長を務め児童館での子どもたちの遊びのサポートや、大学祭の運営、<br>
-                治安向上のためのゴミ拾い活動などを行っていました。<br>
-                また、発達心理学の知識を活かして保育園でのアルバイトなども経験してきました。
-              </p>
+      <div class="about-bio__viewport">
+
+        <article class="bio-era is-active" data-era="university">
+          
+          <div class="bio-era__text">
+            <h4>大学時代</h4>
+            
+            <p>
+              大学では心理学を専攻しており、児童や人間の心情心理を知るために主に対人心理、発達心理学を学んでいました。<br>
+              大学以外では、ボランティアサークルで副会長を務め児童館での子どもたちの遊びのサポートや、大学祭の運営、<br>
+              治安向上のためのゴミ拾い活動などを行っていました。<br>
+              また、発達心理学の知識を活かして保育園でのアルバイトなども経験してきました。
+            </p>
+
           </div>
           
-          <div class="bio-card">
-              <h4>社会人時代</h4>
-              <p>
-                大学卒業後、人に関わる仕事をしたいと考え、社会人になってからはドラッグストアで正社員として勤務していました。<br>
-                店舗では登録販売者資格の取得後、副店長として医薬品の接客販売、薬や在庫の管理、新入社員のOJT指導などを行っておりました。<br>
-                この時、人が何に困っており、どのように解決していくのかを考える力を身につけることができました。
-              </p>
+          <aside class="bio-era__art" aria-hidden="true">
+          
+            <img src="assets/images/character.png" alt="" />
+          
+          </aside>
+          
+        </article>
+
+        <article class="bio-era" data-era="career">
+
+          <div class="bio-era__text">
+            
+            <h4>社会人時代</h4>
+            
+            <p>
+              大学卒業後、人に関わる仕事をしたいと考え、社会人になってからはドラッグストアで正社員として勤務していました。<br>
+              店舗では登録販売者資格の取得後、副店長として医薬品の接客販売、薬や在庫の管理、新入社員のOJT指導などを行っておりました。<br>
+              この時、人が何に困っており、どのように解決していくのかを考える力を身につけることができました。
+            </p>
+
           </div>
           
-          <div class="bio-card">
-              <h4>現在</h4>
-              <p>
-                子どもの頃からの夢であったゲーム制作に関わる仕事をしたいと考え、現在はゲームエンジニアを目指して学習・制作を行っています。<br>
-                慣れないことも多くありますが、ゲーム制作を通して学んだことを活かし、<br>
-                より良い作品を作れるように日々振り返り、改善を行い、次の制作に活かすことを意識して取り組んでいます。<br>
-                また、今年から新1年生のティーチングアシスタントを担当させていただいております。<br>
-                社会人時代に培った人と関わる力を活かし、1年生のの学習をサポートすることにやりがいを感じています。
-              </p>
+          <aside class="bio-era__art" aria-hidden="true">
+          
+            <img src="assets/images/character.png" alt="" />
+          
+          </aside>
+
+        </article>
+        
+        <article class="bio-era" data-era="now">
+
+            <div class="bio-era__text">
+            
+            <h4>現在</h4>
+            
+            <p>
+              子どもの頃からの夢であったゲーム制作に関わる仕事をしたいと考え、現在はゲームエンジニアを目指して学習・制作を行っています。<br>
+              慣れないことも多くありますが、ゲーム制作を通して学んだことを活かし、<br>
+              より良い作品を作れるように日々振り返り、改善を行い、次の制作に活かすことを意識して取り組んでいます。<br>
+              また、今年から新1年生のティーチングアシスタントを担当させていただいております。<br>
+              社会人時代に培った人と関わる力を活かし、1年生のの学習をサポートすることにやりがいを感じています。
+            </p>
+
           </div>
           
+          <aside class="bio-era__art" aria-hidden="true">
+          
+            <img src="assets/images/character.png" alt="" />
+          
+          </aside>
+
+
+        </article>
+        
+        <article class="bio-era" data-era="future">
+
+            <div class="bio-era__text">
+            
+            <h4>これから</h4>
+            
+            <p>
+              制作予定
+
+
+
+            </p>
+
+          </div>
+          
+          <aside class="bio-era__art" aria-hidden="true">
+          
+            <img src="assets/images/character.png" alt="" />
+          
+          </aside>
+
+        </article>
+
+      </div>
+
     </section>
 
   </article>
@@ -296,8 +367,15 @@
         <i class="fa-solid fa-angles-right" aria-hidden="true"></i>
       </button>
 
-    </div>
+      <aside class="about-value-character" aria-hidden="true">
 
+        <img src="assets/images/character.png" alt="" />  
+      
+      </aside>
+
+      
+
+    </div>
 
   </article>
 
@@ -360,7 +438,15 @@
         aria-label="次の要素へ">
         <i class="fa-solid fa-angles-right" aria-hidden="true"></i>
       </button>
-    
+      
+      <aside class="about-value-character" aria-hidden="true">
+      
+        <img src="assets/images/character.png" alt="" /> 
+      
+      </aside>
+
+      
+
     </div>
   
   </article>
@@ -418,7 +504,13 @@
       </div>
 
       <span class="about-value-nav is-placeholder" aria-hidden="true"></span>
-    
+      
+      <aside class="about-value-character" aria-hidden="true">
+
+        <img src="assets/images/character.png" alt="" />
+
+      </aside>
+
     </div>
 
 
