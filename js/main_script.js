@@ -1,7 +1,7 @@
 
 let currentScreen = 'top';
 
-const VALID_SCREENS = ['top', 'about', 'skills', 'works', 'contact'];
+const VALID_SCREENS = ['top', 'about', 'about-more', 'skills', 'works', 'contact'];
 
 const GITHUB_USERNAME = 'Takahashi-02';
 
@@ -44,7 +44,11 @@ function applyScreenChange(name) {
 
   document.querySelectorAll('.jump-item[data-screen]').forEach((btn) => {
     const target = btn.getAttribute('data-screen');
-    const active = isTop ? (target === 'top') : (target === name);
+    
+    const active = isTop
+    ? (target === 'top')
+    : (target === name || (name === 'about-more' && target === 'about'));
+
     btn.classList.toggle('is-active', active);
   });
 
@@ -57,6 +61,13 @@ function applyScreenChange(name) {
   if (backButton) {
   backButton.classList.toggle('is-hidden', isTop);
   }
+
+  const panelBody = document.querySelector('.detail-panel__body');
+  
+  if (panelBody) {
+    panelBody.classList.toggle('is-about-main', name === 'about');
+  }
+
 }
 
 async function showScreen(name) {
@@ -128,7 +139,7 @@ async function showScreen(name) {
 }
 
 document.addEventListener('DOMContentLoaded', () => 
-    {
+{
     // コマンド（TOP 用）
     document.querySelectorAll('.command-item[data-screen]').forEach((button) => 
         
@@ -155,11 +166,27 @@ document.addEventListener('DOMContentLoaded', () =>
   
     if (backButton) 
     {
-    backButton.addEventListener('click', () => 
-    {
-        showScreen('top');
-    });
+      backButton.addEventListener('click', () => 
+      {
+        if (currentScreen === 'about-more') 
+        {
+          showScreen('about');
+        }
+        else 
+        {
+          showScreen('top');
+        }
+      });
     }
+
+    document.querySelectorAll('.btn-more[data-screen]').forEach((button) => 
+    {
+      button.addEventListener('click', () => 
+      {
+        showScreen(button.getAttribute('data-screen'));
+      });
+
+    });
 
 });
 

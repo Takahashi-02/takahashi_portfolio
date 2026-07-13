@@ -372,6 +372,10 @@ body.is-detail-open .scene-character
   opacity: 0;
 }
 
+.detail-panel__body.is-about-main {
+  overflow: auto;
+}
+
 .btn-back {
   position: absolute;
   top: 6%;
@@ -410,12 +414,21 @@ body.is-detail-open .scene-character
 .about-hero {
   display: grid;
   grid-template-columns: minmax(140px, 32%) 1fr;
-  grid-template-areas:
+   grid-template-areas:
     "name   title"
-    "profile summary";
+    "profile summary"
+    ".      more";
+  margin-bottom: 0;
   gap: 12px 20px;
   align-items: start;
   margin-bottom: 20px;
+}
+
+.about-hero__more {
+  grid-area: more;
+  justify-self: end;
+  align-self: end;
+  padding-top: 8px;
 }
 
 /* 赤枠: 名前 */
@@ -555,11 +568,6 @@ body.is-detail-open .scene-character
   background: rgba(255, 255, 255, 0.65);
 }
 
-.about-more {
-  margin-top: 8px;
-  text-align: right;
-}
-
 .about-more .about-section {
   text-align: left;
 }
@@ -574,10 +582,8 @@ body.is-detail-open .scene-character
   font: inherit;
   cursor: pointer;
 }
-.about-more[open] .btn-more {
-  background: #fff;
-  color: #000;
-}
+
+
 .about-section {
   margin-bottom: 24px;
   padding-bottom: 16px;
@@ -890,7 +896,8 @@ body.is-detail-open .scene-character
       "name"
       "title"
       "profile"
-      "summary";
+      "summary"
+      "more";
   }
 
   .command-panel {
