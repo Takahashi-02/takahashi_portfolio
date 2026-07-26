@@ -16,7 +16,12 @@ let reposLoaded = false;
 
 const FADE_MS = 250;
 const CONTENT_FADE_MS = 200;
+const WELCOME_CHAR_MS = 52;
+const WELCOME_LINE_PAUSE_MS = 300;
 let isTransitioning = false;
+let welcomeTypingToken = 0;
+let currentBgIndex = 1;
+let activeBgLayer = 'a';
 
 
 
@@ -28,7 +33,45 @@ function wait(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function resolveBackgroundIndex(name) {
+  if (name === 'top') return 1;
+  if (name === 'skills') return 3;
+  if (name === 'contact') return 5;
+  if (name === 'works' || /^work-\d+$/.test(name)) return 4;
+  if (name === 'about' || name.startsWith('about-')) return 2;
+  return 1;
+}
+
+function setSceneBackground(name) {
+  const nextIndex = resolveBackgroundIndex(name);
+  if (nextIndex === currentBgIndex) return;
+
+  const nextLayerKey = activeBgLayer === 'a' ? 'b' : 'a';
+  const nextLayer = document.querySelector(`.scene-bg__layer[data-bg-layer="${nextLayerKey}"]`);
+  const currentLayer = document.querySelector(`.scene-bg__layer[data-bg-layer="${activeBgLayer}"]`);
+
+  if (!nextLayer || !currentLayer) return;
+
+  const src = `assets/images/bg_${nextIndex}.png`;
+  nextLayer.querySelectorAll('.scene-bg__tile').forEach((img) => {
+    img.src = src;
+  });
+
+  if (prefersReducedMotion()) {
+    currentLayer.classList.remove('is-visible');
+    nextLayer.classList.add('is-visible');
+  } else {
+    nextLayer.classList.add('is-visible');
+    currentLayer.classList.remove('is-visible');
+  }
+
+  activeBgLayer = nextLayerKey;
+  currentBgIndex = nextIndex;
+}
+
 function applyScreenChange(name) {
+  setSceneBackground(name);
+
   const isTop = (name === 'top');
 
   document.body.classList.toggle('is-detail-open', !isTop);
@@ -92,6 +135,83 @@ function applyScreenChange(name) {
     detailPanel.scrollTop = 0;
   }
 
+  if (isTop) {
+    playWelcomeTypewriter();
+  } else {
+    stopWelcomeTypewriter();
+  }
+
+}
+
+function createWelcomeCursor() {
+  const cursor = document.createElement('span');
+  cursor.className = 'top-welcome__cursor';
+  cursor.setAttribute('aria-hidden', 'true');
+  cursor.textContent = '▼';
+  return cursor;
+}
+
+function resetWelcomeLines() {
+  const welcome = document.querySelector('.top-welcome');
+  if (!welcome) return;
+
+  welcome.classList.remove('is-typing', 'is-complete');
+  welcome.querySelectorAll('.top-welcome__line[data-text]').forEach((line) => {
+    line.textContent = '';
+  });
+}
+
+function stopWelcomeTypewriter() {
+  welcomeTypingToken += 1;
+  resetWelcomeLines();
+}
+
+async function playWelcomeTypewriter() {
+  const welcome = document.querySelector('.top-welcome');
+  if (!welcome) return;
+
+  const lines = [...welcome.querySelectorAll('.top-welcome__line[data-text]')];
+  if (!lines.length) return;
+
+  const token = ++welcomeTypingToken;
+  resetWelcomeLines();
+
+  if (prefersReducedMotion()) {
+    lines.forEach((line) => {
+      line.textContent = line.dataset.text || '';
+    });
+    welcome.classList.add('is-complete');
+    return;
+  }
+
+  welcome.classList.add('is-typing');
+
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+    if (token !== welcomeTypingToken) return;
+
+    const line = lines[lineIndex];
+    const text = line.dataset.text || '';
+    const isLastLine = lineIndex === lines.length - 1;
+    const cursor = createWelcomeCursor();
+
+    line.appendChild(cursor);
+
+    for (const char of text) {
+      if (token !== welcomeTypingToken) return;
+      line.insertBefore(document.createTextNode(char), cursor);
+      await wait(WELCOME_CHAR_MS);
+    }
+
+    if (!isLastLine) {
+      cursor.remove();
+      await wait(WELCOME_LINE_PAUSE_MS);
+    }
+  }
+
+  if (token !== welcomeTypingToken) return;
+
+  welcome.classList.remove('is-typing');
+  welcome.classList.add('is-complete');
 }
 
 async function showScreen(name) {
@@ -233,7 +353,16 @@ document.addEventListener('DOMContentLoaded', () =>
       });
     });
 
-    initSkillsPanel(); 
+    document.querySelectorAll('.btn-more[data-screen]').forEach((button) =>
+    {
+      button.addEventListener('click', () =>
+      {
+        showScreen(button.getAttribute('data-screen'));
+      });
+    });
+
+    initSkillsPanel();
+    playWelcomeTypewriter();
 
 });
 

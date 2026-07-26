@@ -22,7 +22,7 @@
   <!-- Google Fonts の DotGothic16 を読み込む トップページのコマンドボタン用 -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;500;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
   
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
@@ -41,9 +41,17 @@
 
       <!-- レイヤー0: 空（div + CSS の background-image） -->
       <div class="scene-bg" aria-hidden="true">
-        <div class="scene-bg__track">
-          <img class="scene-bg__tile" src="assets/images/bg_1.png" alt="" />
-          <img class="scene-bg__tile" src="assets/images/bg_1.png" alt="" />
+        <div class="scene-bg__layer is-visible" data-bg-layer="a">
+          <div class="scene-bg__track">
+            <img class="scene-bg__tile" src="assets/images/bg_1.png" alt="" />
+            <img class="scene-bg__tile" src="assets/images/bg_1.png" alt="" />
+          </div>
+        </div>
+        <div class="scene-bg__layer" data-bg-layer="b">
+          <div class="scene-bg__track">
+            <img class="scene-bg__tile" src="assets/images/bg_1.png" alt="" />
+            <img class="scene-bg__tile" src="assets/images/bg_1.png" alt="" />
+          </div>
         </div>
       </div>
 
@@ -52,6 +60,13 @@
 
       <!-- レイヤー2: キャラ（透過PNG） -->
       <img class="scene-character" src="assets/images/character.png" alt="キャラクター" />
+
+      <!-- レイヤー2.5: トップウェルカム文 -->
+      <h1 class="top-welcome" aria-label="Welcome to my Portfolio">
+        <span class="top-welcome__line" data-text="Welcome"></span>
+        <span class="top-welcome__line top-welcome__line--indent" data-text="to"></span>
+        <span class="top-welcome__line" data-text="my Portfolio"></span>
+      </h1>
 
       <!-- レイヤー3: コマンドパネル（TOP のみ表示・Phase 3 で動かす） -->
       <aside class="command-panel" aria-label="RPG風コマンドメニュー">
@@ -653,9 +668,9 @@
           <h3 class="work-card__title">シロのマジックトレーニング</h3>
           <span class="work-status">完成</span>
         </header>
-        <p class="work-card__genre">あと出し3すくみじゃんけんゲーム</p>
+        <p class="work-card__genre">あと出しじゃんけんゲーム</p>
         <dl class="work-card__meta">
-          <div><dt>制作期間</dt><dd>3か月</dd></div>
+          <div><dt>制作期間</dt><dd>2025.04〜2025.07</dd></div>
           <div><dt>制作体制</dt><dd>個人制作</dd></div>
         </dl>
         <p class="work-card__desc">
@@ -717,7 +732,7 @@
 
     <header class="work-detail__hero">
       <h2 class="work-detail__title">シロのマジックトレーニング</h2>
-      <p class="work-detail__genre">あと出し3すくみじゃんけんゲーム</p>
+      <p class="work-detail__genre">あと出しじゃんけんゲーム</p>
       <div class="work-detail__video">
         <iframe
           src="https://www.youtube.com/embed/CodSPOiYvz8"
@@ -731,30 +746,30 @@
 
     <section class="work-detail__section">
       <h3 class="work-detail__heading">ゲーム概要</h3>
-      <p class="work-detail__tagline">サンプル：ゲームの一言説明が入ります。</p>
+      <p class="work-detail__tagline">じゃんけんにあと出し要素を付け足したじゃんけんゲームです。</p>
       <div class="work-detail__summary-grid">
         <div class="work-detail__summary-item">
           <p class="work-detail__summary-label">ジャンル</p>
-          <p class="work-detail__summary-value">サンプル</p>
+          <p class="work-detail__summary-value">あと出しじゃんけんゲーム</p>
         </div>
         <div class="work-detail__summary-item">
           <p class="work-detail__summary-label">プレイ人数</p>
-          <p class="work-detail__summary-value">サンプル</p>
+          <p class="work-detail__summary-value">1人</p>
         </div>
         <div class="work-detail__summary-item">
           <p class="work-detail__summary-label">クリア条件</p>
-          <p class="work-detail__summary-value">サンプル</p>
+          <p class="work-detail__summary-value">制限時間内まで生存すること</p>
         </div>
         <div class="work-detail__summary-item">
           <p class="work-detail__summary-label">主なアクション</p>
-          <p class="work-detail__summary-value">サンプル</p>
+          <p class="work-detail__summary-value">魔法攻撃</p>
         </div>
       </div>
       <div class="work-detail__box">
-        <p>サンプル：ゲーム概要の説明文が入ります。</p>
-        <p>サンプル：プレイの流れや特徴について書きます。</p>
+        <p>制限時間が来るまでに多くの敵を倒してスコアを稼ぎます。</p>
+        <p>敵の種類によって、攻撃しなければいけない回数が変わるので、常に敵の種類と属性に気を付けながらゲームを進めていく必要があります。</p>
         <hr class="work-detail__divider" />
-        <p class="work-detail__accent">サンプル：補足や技術的なポイントが入ります。</p>
+        <p class="work-detail__accent">また、コンボが続くとラッシュタイムに突入し、一定時間どの属性でも倒すことができる要素があります。この要素により、プレイヤーにはより慎重かつ素早くプレイしてもらうことを想定しています。</p>
       </div>
     </section>
 
@@ -764,19 +779,19 @@
         <tbody>
           <tr>
             <th scope="row">制作人数</th>
-            <td>サンプル</td>
+            <td>1人</td>
           </tr>
           <tr>
             <th scope="row">制作期間</th>
-            <td>サンプル（制作予定）</td>
+            <td>2025.04〜2025.07</td>
           </tr>
           <tr>
             <th scope="row">担当</th>
-            <td>サンプル</td>
+            <td>ゲーム内全てを担当しました</td>
           </tr>
           <tr>
             <th scope="row">使用技術</th>
-            <td>サンプル</td>
+            <td>DXライブラリ / Visual Studio / C++ / GIMP</td>
           </tr>
         </tbody>
       </table>
@@ -784,30 +799,21 @@
 
     <section class="work-detail__section">
       <h3 class="work-detail__heading">操作方法</h3>
-      <p class="work-detail__intro">サンプル：操作の前提（キーボード / ゲームパッドなど）が入ります。</p>
-      <h4 class="work-detail__subheading">メニュー画面</h4>
-      <table class="work-detail__controls-table">
-        <tbody>
-          <tr>
-            <th scope="row">サンプル</th>
-            <td>制作予定</td>
-          </tr>
-          <tr>
-            <th scope="row">サンプル</th>
-            <td>制作予定</td>
-          </tr>
-        </tbody>
-      </table>
+      <p class="work-detail__intro">キーボードの矢印キーで操作します。</p>
       <h4 class="work-detail__subheading">ゲーム中</h4>
       <table class="work-detail__controls-table">
         <tbody>
           <tr>
-            <th scope="row">サンプル</th>
-            <td>制作予定</td>
+            <th scope="row">左キー</th>
+            <td>炎属性攻撃</td>
           </tr>
           <tr>
-            <th scope="row">サンプル</th>
-            <td>制作予定</td>
+            <th scope="row">上キー</th>
+            <td>水属性攻撃</td>
+          </tr>
+          <tr>
+            <th scope="row">右キー</th>
+            <td>草属性攻撃</td>
           </tr>
         </tbody>
       </table>
@@ -815,28 +821,23 @@
 
     <section class="work-detail__section">
       <h3 class="work-detail__heading">工夫した点</h3>
-      <p class="work-detail__intro">サンプル：工夫した点の概要が入ります。</p>
       <div class="work-detail__card">
-        <h4 class="work-detail__subheading">サンプル見出し</h4>
-        <p>サンプル：工夫した内容の説明が入ります。</p>
+        <h4 class="work-detail__subheading">いかにプレイヤーの気持ちに寄り添った画面ができるか</h4>
+        <p>プレイヤーが操作方法やルールを見失わないよう、画面上に矢印キーでどの攻撃が出るのか、3すくみの図をいつでも確認できるように右下に図を配置したりなど、自分がプレイヤーだったらどんな情報が欲しいかを第一に制作を行いました。</p>
+        <p>必要な情報ほど大きく、それほど必要ではない情報ほど端に小さく作ることにより、プレイヤーがどこを見ればいいのかをわかりやすく設計を行いました。</p>
+      </div>
+      <div class="work-detail__card">
+        <h4 class="work-detail__subheading">攻撃している感じにみせる</h4>
+        <p>攻撃している風に見せるため、左下にキャラクターの画像を配置しました。左キーを押したら杖を左に振っている画像に、上なら杖も上というように、プレイヤーの操作に合わせて画像も変化することで、キャラクターを操作している感じに仕上げることができました。</p>
+        <p>また、使用したモデルも自分で用意してVR技術を用いて素材を作成しました。</p>
       </div>
     </section>
 
     <section class="work-detail__section">
       <h3 class="work-detail__heading">苦労した点</h3>
-      <p class="work-detail__intro">サンプル：苦労した点の概要が入ります。</p>
       <div class="work-detail__card">
-        <h4 class="work-detail__subheading">サンプル見出し</h4>
-        <p>サンプル：苦労した内容の説明が入ります。</p>
-      </div>
-    </section>
-
-    <section class="work-detail__section">
-      <h3 class="work-detail__heading">今後改善したい点</h3>
-      <p class="work-detail__intro">サンプル：改善したい点の概要が入ります。</p>
-      <div class="work-detail__card">
-        <h4 class="work-detail__subheading">サンプル見出し</h4>
-        <p>サンプル：改善したい内容が入ります。</p>
+        <h4 class="work-detail__subheading">一定の条件で勝負が永遠にループする問題</h4>
+        <p>プレイヤーの属性を始めから何かに設定していたせいで、特定の条件下で操作していなくとも毎ループ勝手に勝敗が決まってしまう問題がありました。理由は「プレイヤーがまだ何も出していない」状態を作っていないからであり、そこに気づくのに時間がかかってしまったことです。</p>
       </div>
     </section>
 
@@ -858,10 +859,9 @@
     <section class="work-detail__section">
       <h3 class="work-detail__heading">この作品で学んだこと</h3>
       <div class="work-detail__learned">
-        <p>サンプル：この作品を通して学んだことが入ります。</p>
-        <p>サンプル：技術面での学びが入ります。</p>
-        <hr class="work-detail__divider" />
-        <p class="work-detail__accent">サンプル：今後への活かし方が入ります。</p>
+        <p>この作品は、自分がプログラムを学んで一番最初に制作したゲームであり、ゲームがどのような流れで始まって、終わっているのかについて深く知ることができました。</p>
+        <p>また、企画から設計、機能の実装まですべて1人で行ったことにより、プログラムの基礎にあたる要素を勉強する良い機会だったと思います。</p>
+        <p class="work-detail__accent">制作中に思いもよらないバグや不具合、仕様の変更などがありましたが、そこも踏まえてゲーム制作の面白さと大変さを知ることができました。</p>
       </div>
     </section>
 
