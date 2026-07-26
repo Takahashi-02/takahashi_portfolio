@@ -317,9 +317,8 @@ body.is-detail-open .command-panel
   width: 96%;
   max-width: none;
   height: min(72vh, 600px);
-  padding: 20px 24px;
+  padding: 20px 0 20px 24px;
   z-index: 4;
-  overflow-y: auto;
   background: #000;
   border: 3px solid #fff;
   color: #fff;
@@ -339,17 +338,18 @@ body.is-detail-open .command-panel
   font-family: var(--font-body);
   line-height: 1.75;
 
-  overflow: hidden;          /* パネル自体はスクロールしない */
+  overflow-x: hidden;
+  overflow-y: auto;  
   display: flex;
   flex-direction: column;
 }
 
 .detail-panel__body {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
+  flex: 1 1 auto;
+  overflow: visible;
   transition: opacity 0.2s ease;
-  width: 100%; 
+  width: 100%;
+  padding-right: 24px;
 }
 
 .detail-panel.is-hidden 
@@ -359,19 +359,12 @@ body.is-detail-open .command-panel
   pointer-events: none;
 }
 
-.detail-panel__body {
-  flex: 1;
-  min-height: 0;             /* flex 子のスクロールに必須 */
-  overflow-y: auto;
-  transition: opacity 0.2s ease;
-}
-
 .detail-panel__body.is-fading {
   opacity: 0;
 }
 
 .detail-panel__body.is-about-main {
-  overflow: auto;
+  overflow: visible;
 }
 
 .btn-back {
@@ -609,6 +602,10 @@ body.is-detail-open .command-panel
   max-width: none;
 }
 
+.detail-content[data-content="skills"] {
+  max-width: none;
+}
+
 /* about-more：自然な高さで縦に並べる */
 .detail-content[data-content="about-more"] .about-values {
   padding-bottom: 32px;
@@ -724,6 +721,7 @@ body.is-detail-open .command-panel
   grid-template-columns: repeat(2, 1fr);
   gap: 20px 24px;
   margin-top: 20px;
+  width: 100%;
 }
 
 .skill-card {
@@ -776,48 +774,320 @@ body.is-detail-open .command-panel
 /* ========================================
    Works 画面
    ======================================== */
+.detail-content[data-content="works"],
+.detail-content[data-content="work-1"],
+.detail-content[data-content="work-2"],
+.detail-content[data-content="work-3"] {
+  max-width: none;
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
+  margin-top: 20px;
+}
+
 .work-card {
-  margin: 16px 0;
-  padding: 14px 16px;
   border: 2px solid #fff;
+  background: rgba(0, 0, 0, 0.45);
+  overflow: hidden;
 }
-.work-card h3 {
-  margin: 8px 0;
+
+.work-card__thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-bottom: 2px solid #fff;
 }
+
+.work-card__body {
+  padding: 14px 16px;
+}
+
+.work-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.work-card__title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
 .work-status {
   display: inline-block;
   padding: 4px 10px;
   border: 1px solid #fff;
   font-size: 0.85rem;
+  white-space: nowrap;
 }
+
 .work-status--progress {
   background: #fff;
   color: #000;
 }
-.work-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-.work-tags span {
-  padding: 4px 10px;
-  border: 1px solid #fff;
-  font-size: 0.85rem;
-}
-.work-thumb {
-  display: block;
-  width: 100%;
-  max-width: 320px;
-  margin: 12px 0;
-  border: 2px solid #fff;
+
+.work-card__genre {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  opacity: 0.85;
 }
 
-.work-meta {
-  margin: 8px 0 12px;
-  padding-left: 1.2em;
+.work-card__meta {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+}
+
+.work-card__meta div {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.work-card__meta dt {
+  opacity: 0.75;
+}
+
+.work-card__meta dd {
+  margin: 0;
+}
+
+.work-card__desc {
+  margin: 0 0 14px;
   line-height: 1.7;
-  opacity: 0.95;
+  font-size: 0.9rem;
+}
+
+.work-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 2px solid #fff;
+  background: #000;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.work-card__btn:hover,
+.work-card__btn:focus-visible {
+  background: #fff;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Works 詳細画面
+   ======================================== */
+.work-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.work-detail__hero {
+  margin-bottom: 8px;
+}
+
+.work-detail__title {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+}
+
+.work-detail__genre {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.work-detail__video {
+  border: 2px solid #fff;
+  background: rgba(0, 0, 0, 0.45);
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.work-detail__video-placeholder {
+  margin: 0;
+  opacity: 0.75;
+  font-size: 0.9rem;
+}
+
+.work-detail__section {
+  margin: 0;
+}
+
+.work-detail__heading {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  padding-bottom: 6px;
+}
+
+.work-detail__tagline,
+.work-detail__intro {
+  margin: 0 0 16px;
+  line-height: 1.75;
+  opacity: 0.9;
+}
+
+.work-detail__summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.work-detail__summary-item {
+  border: 2px solid #fff;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 12px 14px;
+}
+
+.work-detail__summary-label {
+  margin: 0 0 6px;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.work-detail__summary-value {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.work-detail__box,
+.work-detail__card,
+.work-detail__learned {
+  border: 2px solid #fff;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 16px 18px;
+  line-height: 1.75;
+}
+
+.work-detail__box {
+  border-left: 4px solid #fff;
+}
+
+.work-detail__learned {
+  border-left: 4px solid rgba(255, 255, 255, 0.7);
+}
+
+.work-detail__box p,
+.work-detail__card p,
+.work-detail__learned p {
+  margin: 0 0 12px;
+}
+
+.work-detail__box p:last-child,
+.work-detail__card p:last-child,
+.work-detail__learned p:last-child {
+  margin-bottom: 0;
+}
+
+.work-detail__divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  margin: 16px 0;
+}
+
+.work-detail__accent {
+  opacity: 0.9;
+}
+
+.work-detail__subheading {
+  margin: 20px 0 10px;
+  padding-left: 12px;
+  border-left: 4px solid #fff;
+  font-size: 1rem;
+}
+
+.work-detail__section > .work-detail__subheading:first-of-type {
+  margin-top: 0;
+}
+
+.work-detail__info-table,
+.work-detail__controls-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid #fff;
+  font-size: 0.9rem;
+}
+
+.work-detail__info-table th,
+.work-detail__info-table td,
+.work-detail__controls-table th,
+.work-detail__controls-table td {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.work-detail__info-table th,
+.work-detail__controls-table th {
+  width: 30%;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 500;
+}
+
+.work-detail__screenshots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.work-detail__screenshots--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.work-detail__screenshot {
+  margin: 0;
+  border: 2px solid #fff;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.work-detail__screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.work-detail__screenshot-placeholder {
+  aspect-ratio: 16 / 10;
+  border: 2px solid #fff;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .work-detail__summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-detail__screenshots,
+  .work-detail__screenshots--3 {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ========================================
@@ -1060,11 +1330,15 @@ body.is-detail-open .command-panel
   }
 
   .detail-panel {
-    width: 96%;
-    left: 2%;
-    top: 16%;
-    height: min(65vh, 480px);
-    padding: 14px 16px;
+  width: 96%;
+  left: 2%;
+  top: 16%;
+  height: min(65vh, 480px);
+  padding: 14px 0 14px 16px;
+  }
+
+.detail-panel__body {
+  padding-right: 16px;
   }
 
   .jump-bar {

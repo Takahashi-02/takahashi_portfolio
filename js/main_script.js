@@ -2,9 +2,12 @@
 let currentScreen = 'top';
 
 const VALID_SCREENS = [
-  'top', 'about', 'about-more',
+  'top', 
+  'about', 'about-more',
   'about-value-1', 'about-value-2', 'about-value-3',
-  'skills', 'works', 'contact'
+  'skills',
+  'works','work-1', 'work-2', 'work-3',
+  'contact'
 ];
 
 const GITHUB_USERNAME = 'Takahashi-02';
@@ -56,7 +59,15 @@ function applyScreenChange(name) {
     name === 'about-value-2' ||
     name === 'about-value-3';
 
-    const active = isTop ? (target === 'top') : (target === name || (isAboutFamily && target === 'about'));
+    const isWorksFamily =
+    name === 'works' ||
+    name === 'work-1' ||
+    name === 'work-2' ||
+    name === 'work-3';
+
+    const active = isTop
+      ? (target === 'top')
+      : (target === name || (isAboutFamily && target === 'about') || (isWorksFamily && target === 'works'));
 
     btn.classList.toggle('is-active', active);
   });
@@ -75,7 +86,10 @@ function applyScreenChange(name) {
   
   if (panelBody) {
     panelBody.classList.toggle('is-about-main', name === 'about');
-    panelBody.scrollTop = 0;
+  }
+
+  if (detailPanel) {
+    detailPanel.scrollTop = 0;
   }
 
 }
@@ -181,24 +195,34 @@ document.addEventListener('DOMContentLoaded', () =>
         if (
           currentScreen === 'about-value-1' ||
           currentScreen === 'about-value-2' ||
-          currentScreen === 'about-value-3'
-        ) {
+          currentScreen === 'about-value-3') 
+          {
           showScreen('about-more');
-        } else if (currentScreen === 'about-more') {
+          } 
+          else if (currentScreen === 'about-more') 
+          {
           showScreen('about');
-        } else {
+          } 
+          else if (
+          currentScreen === 'work-1' ||
+          currentScreen === 'work-2' ||
+          currentScreen === 'work-3') 
+          {
+          showScreen('works');
+          }
+          else 
+          {
           showScreen('top');
-        }
+          }
       });
     }
 
-    document.querySelectorAll('.btn-more[data-screen]').forEach((button) => 
+    document.querySelectorAll('.work-card__btn[data-screen]').forEach((button) => 
     {
       button.addEventListener('click', () => 
       {
         showScreen(button.getAttribute('data-screen'));
       });
-
     });
 
     document.querySelectorAll('.about-value-btn[data-screen]').forEach((button) => 

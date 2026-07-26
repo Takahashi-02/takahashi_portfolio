@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>髙橋 勇喜 | Game Engineer Portfolio</title>
   
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="description" content="ゲームプログラマ志望・髙橋勇喜のポートフォリオサイトです。C++、DXライブラリを中心とした制作実績、スキル、学習姿勢を掲載しています。" />
   <link rel="canonical" href="https://takahashi-02.github.io/takahashi_portfolio/" />
   <meta property="og:type" content="website" />
@@ -637,113 +638,249 @@
 
 </article>
 
-  <article class="detail-content is-hidden" data-content="works">
+<article class="detail-content is-hidden" data-content="works">
   
-    <h2>Works</h2>
-    <p class="section-lead">
-
-      完成作品と制作中作品を掲載しています。担当範囲と使用技術がわかる構成にしています。
-    
-    </p>
-
-
-    <!-- 作品1 -->
-    <article class="work-card">
-
-      <span class="work-status">動画あり / コードなし</span>
-
-      <h3>シロのマジックトレーニング</h3>
-
-      <ul class="work-meta">
-        <li><strong>ジャンル：</strong>あと出し3すくみじゃんけんゲーム</li>
-        <li><strong>制作期間：</strong>3か月</li>
-        <li><strong>制作体制：</strong>個人制作</li>
-      </ul>
-
-      <p>                
-        私がゲーム制作を始めたきっかけの作品です。C++ と DXライブラリを使用して制作しました。
-        3すくみのルールロジック、シーン遷移、UI描画などを実装しました。
-        プレイ動画で内容を確認できます。
-        動画はプレイ動画のみですが、プレイ前に会話シーン、チュートリアルの実装も行いました。
-      </p>
+  <h2>Works</h2>
   
-      <!-- スクショを足すとき:
+  <p class="section-lead">完成作品と制作中作品です。</p>
 
-      <img class="work-thumb" src="assets/images/works/magic-training.png" alt="シロのマジックトレーニングの画面" />
-      
-      -->
+  <div class="works-grid">
 
-      <div class="work-tags">
-
-        <span>DXLib</span>
-        <span>C++</span>
-        <span>Visual Studio</span>
-        <span>GIMP</span>
-
-      </div>
-
-    </article>
-  
-    <!-- 作品2 -->
     <article class="work-card">
-
-      <span class="work-status work-status--progress">制作中</span>
-
-      <h3>2Dアクションゲーム（仮）</h3>
-      
-      <ul class="work-meta">
-        <li><strong>ジャンル：</strong>2Dアクションゲーム</li>
-        <li><strong>制作期間：</strong>3か月</li>
-        <li><strong>制作体制：</strong>個人制作</li>
-      </ul>
-
-      <p>
-        私がスプライトシートを用いたキャラクターの描画、箱型を用いた当たり判定などを使用してみたくて生まれた作品です。
-        こちらもC++ と DXライブラリを使用して制作しました。
-        キャラクターの制御、箱型を用いた当たり判定、敵AI、マップチップ描画などを実装しています。
-      </p>
-
-      <div class="work-tags">
-        <span>DXLib</span>
-        <span>C++</span>
-        <span>Visual Studio</span>
-        <span>GIMP</span>
+      <img class="work-card__thumb" src="assets/images/gametitle_1.png" alt="シロのマジックトレーニングのタイトル画面" />
+      <div class="work-card__body">
+        <header class="work-card__header">
+          <h3 class="work-card__title">シロのマジックトレーニング</h3>
+          <span class="work-status">完成</span>
+        </header>
+        <p class="work-card__genre">あと出し3すくみじゃんけんゲーム</p>
+        <dl class="work-card__meta">
+          <div><dt>制作期間</dt><dd>3か月</dd></div>
+          <div><dt>制作体制</dt><dd>個人制作</dd></div>
+        </dl>
+        <p class="work-card__desc">
+          ゲーム制作を始めたきっかけの作品です。C++ と DXライブラリで3すくみのルール、シーン遷移、UI描画などを実装しました。
+        </p>
+        <button type="button" class="work-card__btn" data-screen="work-1">
+          詳細を見る <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
       </div>
-
-    </article>
-    
-    <!-- 作品3 -->
-    <article class="work-card">
-
-      <span class="work-status work-status--progress">制作中</span>
-
-      <h3>3Dシューティングゲーム（仮）</h3>
-      
-      <ul class="work-meta">
-          <li><strong>ジャンル：</strong>3Dシューティングゲーム</li>
-          <li><strong>制作期間：</strong>現在も制作中</li>
-          <li><strong>制作体制：</strong>個人制作</li>
-      </ul>
-
-      <p>
-        私がDXライブラリを使用して3D空間を用いた作品が作りたくて生まれた作品です。
-        こちらもC++ と DXライブラリを使用して制作しました。
-        3Dモデル描画、空間制御、プレイヤー・敵の弾管理、当たり判定を中心に実装しています。
-      </p>
-
-      <div class="work-tags">
-        <span>DXライブラリ</span>
-        <span>C++</span>
-        <span>Visual Studio</span>
-      </div>
-
     </article>
 
-  </article>
+    <article class="work-card">
+      <img class="work-card__thumb" src="assets/images/ready_1.png" alt="2Dアクションゲーム（仮）のタイトル画面（準備中）" />
+      <div class="work-card__body">
+        <header class="work-card__header">
+          <h3 class="work-card__title">2Dアクションゲーム（仮）</h3>
+          <span class="work-status work-status--progress">制作中</span>
+        </header>
+        <p class="work-card__genre">2Dアクションゲーム</p>
+        <dl class="work-card__meta">
+          <div><dt>制作期間</dt><dd>3か月</dd></div>
+          <div><dt>制作体制</dt><dd>個人制作</dd></div>
+        </dl>
+        <p class="work-card__desc">
+          スプライトシート描画や箱型当たり判定に挑戦した作品です。キャラクター制御、敵AI、マップチップ描画などを実装しています。
+        </p>
+        <button type="button" class="work-card__btn" data-screen="work-2">
+          詳細を見る <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </article>
 
-  <article class="detail-content is-hidden" data-content="contact">
+    <article class="work-card">
+      <img class="work-card__thumb" src="assets/images/ready_2.png" alt="3Dシューティングゲーム（仮）のタイトル画面（準備中）" />
+      <div class="work-card__body">
+        <header class="work-card__header">
+          <h3 class="work-card__title">3Dシューティングゲーム（仮）</h3>
+          <span class="work-status work-status--progress">制作中</span>
+        </header>
+        <p class="work-card__genre">3Dシューティングゲーム</p>
+        <dl class="work-card__meta">
+          <div><dt>制作期間</dt><dd>現在も制作中</dd></div>
+          <div><dt>制作体制</dt><dd>個人制作</dd></div>
+        </dl>
+        <p class="work-card__desc">
+          DXライブラリで3D空間を用いた制作に挑戦しています。3Dモデル描画、空間制御、弾管理、当たり判定を中心に実装中です。
+        </p>
+        <button type="button" class="work-card__btn" data-screen="work-3">
+          詳細を見る <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </article>
 
-    <h2>Contact</h2>  
+  </div>
+</article>
+
+<article class="detail-content is-hidden" data-content="work-1">
+  <div class="work-detail">
+
+    <header class="work-detail__hero">
+      <h2 class="work-detail__title">シロのマジックトレーニング</h2>
+      <p class="work-detail__genre">あと出し3すくみじゃんけんゲーム</p>
+      <div class="work-detail__video">
+        <iframe
+          src="https://www.youtube.com/embed/CodSPOiYvz8"
+          title="シロのマジックトレーニング プレイ動画"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </header>
+
+    <section class="work-detail__section">
+      <h3 class="work-detail__heading">ゲーム概要</h3>
+      <p class="work-detail__tagline">サンプル：ゲームの一言説明が入ります。</p>
+      <div class="work-detail__summary-grid">
+        <div class="work-detail__summary-item">
+          <p class="work-detail__summary-label">ジャンル</p>
+          <p class="work-detail__summary-value">サンプル</p>
+        </div>
+        <div class="work-detail__summary-item">
+          <p class="work-detail__summary-label">プレイ人数</p>
+          <p class="work-detail__summary-value">サンプル</p>
+        </div>
+        <div class="work-detail__summary-item">
+          <p class="work-detail__summary-label">クリア条件</p>
+          <p class="work-detail__summary-value">サンプル</p>
+        </div>
+        <div class="work-detail__summary-item">
+          <p class="work-detail__summary-label">主なアクション</p>
+          <p class="work-detail__summary-value">サンプル</p>
+        </div>
+      </div>
+      <div class="work-detail__box">
+        <p>サンプル：ゲーム概要の説明文が入ります。</p>
+        <p>サンプル：プレイの流れや特徴について書きます。</p>
+        <hr class="work-detail__divider" />
+        <p class="work-detail__accent">サンプル：補足や技術的なポイントが入ります。</p>
+      </div>
+    </section>
+
+    <section class="work-detail__section">
+      <h3 class="work-detail__heading">基本情報</h3>
+      <table class="work-detail__info-table">
+        <tbody>
+          <tr>
+            <th scope="row">制作人数</th>
+            <td>サンプル</td>
+          </tr>
+          <tr>
+            <th scope="row">制作期間</th>
+            <td>サンプル（制作予定）</td>
+          </tr>
+          <tr>
+            <th scope="row">担当</th>
+            <td>サンプル</td>
+          </tr>
+          <tr>
+            <th scope="row">使用技術</th>
+            <td>サンプル</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="work-detail__section">
+      <h3 class="work-detail__heading">操作方法</h3>
+      <p class="work-detail__intro">サンプル：操作の前提（キーボード / ゲームパッドなど）が入ります。</p>
+      <h4 class="work-detail__subheading">メニュー画面</h4>
+      <table class="work-detail__controls-table">
+        <tbody>
+          <tr>
+            <th scope="row">サンプル</th>
+            <td>制作予定</td>
+          </tr>
+          <tr>
+            <th scope="row">サンプル</th>
+            <td>制作予定</td>
+          </tr>
+        </tbody>
+      </table>
+      <h4 class="work-detail__subheading">ゲーム中</h4>
+      <table class="work-detail__controls-table">
+        <tbody>
+          <tr>
+            <th scope="row">サンプル</th>
+            <td>制作予定</td>
+          </tr>
+          <tr>
+            <th scope="row">サンプル</th>
+            <td>制作予定</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="work-detail__section">
+      <h3 class="work-detail__heading">工夫した点</h3>
+      <p class="work-detail__intro">サンプル：工夫した点の概要が入ります。</p>
+      <div class="work-detail__card">
+        <h4 class="work-detail__subheading">サンプル見出し</h4>
+        <p>サンプル：工夫した内容の説明が入ります。</p>
+      </div>
+    </section>
+
+    <section class="work-detail__section">
+      <h3 class="work-detail__heading">苦労した点</h3>
+      <p class="work-detail__intro">サンプル：苦労した点の概要が入ります。</p>
+      <div class="work-detail__card">
+        <h4 class="work-detail__subheading">サンプル見出し</h4>
+        <p>サンプル：苦労した内容の説明が入ります。</p>
+      </div>
+    </section>
+
+    <section class="work-detail__section">
+      <h3 class="work-detail__heading">今後改善したい点</h3>
+      <p class="work-detail__intro">サンプル：改善したい点の概要が入ります。</p>
+      <div class="work-detail__card">
+        <h4 class="work-detail__subheading">サンプル見出し</h4>
+        <p>サンプル：改善したい内容が入ります。</p>
+      </div>
+    </section>
+
+    <section class="work-detail__section">
+      <h3 class="work-detail__heading">スクリーンショット</h3>
+      <div class="work-detail__screenshots work-detail__screenshots--3">
+        <figure class="work-detail__screenshot">
+          <img src="assets/images/gametitle_1.png" alt="シロのマジックトレーニング タイトル画面" />
+        </figure>
+        <figure class="work-detail__screenshot">
+          <img src="assets/images/game_1_shot_1.png" alt="シロのマジックトレーニング プレイ画面1" />
+        </figure>
+        <figure class="work-detail__screenshot">
+          <img src="assets/images/game_1_shot_2.png" alt="シロのマジックトレーニング プレイ画面2" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="work-detail__section">
+      <h3 class="work-detail__heading">この作品で学んだこと</h3>
+      <div class="work-detail__learned">
+        <p>サンプル：この作品を通して学んだことが入ります。</p>
+        <p>サンプル：技術面での学びが入ります。</p>
+        <hr class="work-detail__divider" />
+        <p class="work-detail__accent">サンプル：今後への活かし方が入ります。</p>
+      </div>
+    </section>
+
+  </div>
+</article>
+
+<article class="detail-content is-hidden" data-content="work-2">
+  <h2>2Dアクションゲーム（仮）</h2>
+  <p class="section-lead">（詳細は後で記入）</p>
+</article>
+
+<article class="detail-content is-hidden" data-content="work-3">
+  <h2>3Dシューティングゲーム（仮）</h2>
+  <p class="section-lead">（詳細は後で記入）</p>
+</article>
+
+<article class="detail-content is-hidden" data-content="contact">
+
+  <h2>Contact</h2>  
     
     <p class="section-lead">  
       制作物や選考に関する連絡は、以下のメールからお願いします。
@@ -769,7 +906,7 @@
     </div>
   
     <!-- GitHub プロフィールへのリンク（任意・APIは Phase 4.5） -->
-  <div class="contact-card">
+    <div class="contact-card">
 
     <!-- GitHub リポジトリ一覧（API・Phase 4.5） -->
     <div class="contact-card github-repos-card">
@@ -786,9 +923,9 @@
   
     <p class="contact-label">
         GitHub
-      </p>
+    </p>
 
-      <a
+    <a
 
       class="contact-link"
       href="https://github.com/Takahashi-02"
@@ -802,16 +939,16 @@
 
   </div>
 
-  </article>
+</article>
 
-     </div>
+    </div>
 
-    </section>
+  </section>
 
     </div>
   </div>
 
-  <!-- Phase 3 で画面切り替えを入れるときに有効化 -->
+    <!-- Phase 3 で画面切り替えを入れるときに有効化 -->
   <script src="js/main_script.js"></script>
 
 </body>
