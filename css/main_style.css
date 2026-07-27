@@ -11,6 +11,89 @@ body
   margin: 0;
 }
 
+body.is-loading #app {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body:not(.is-loading) #app {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+
+
+/* ========================================
+   ロード画面
+   ======================================== */
+.load-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.load-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.load-screen__panel {
+  width: min(90vw, 440px);
+  padding: 32px 36px;
+  border: 3px solid #fff;
+  background: rgba(0, 0, 0, 0.88);
+  box-shadow: 8px 8px 0 rgba(255, 255, 255, 0.15);
+  text-align: center;
+}
+
+.load-screen__title {
+  margin: 0 0 24px;
+  font-family: var(--font-rpg);
+  font-size: 1.35rem;
+  letter-spacing: 0.12em;
+  color: #fff;
+}
+
+.load-screen__dots {
+  display: inline-block;
+  animation: load-dots 1.2s steps(4, end) infinite;
+}
+
+@keyframes load-dots {
+  0%   { opacity: 0.2; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+.load-screen__gauge-track {
+  height: 22px;
+  border: 2px solid #fff;
+  background: #000;
+  overflow: hidden;
+}
+
+.load-screen__gauge-fill {
+  width: 0%;
+  height: 100%;
+  background: #fff;
+  transition: width 0.1s linear;
+}
+
+.load-screen__percent {
+  margin: 16px 0 0;
+  font-family: var(--font-8bit);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+
 
 
 /* ========================================
@@ -122,13 +205,17 @@ body.is-detail-open .scene-character {
   left: 38%;
   transform: translateX(-50%);
   z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   margin: 0;
-  max-width: min(72vw, 820px);
+  width: max-content;
+  max-width: min(88vw, 920px);
   padding: 0;
   font-family: var(--font-8bit);
-  font-size: clamp(1.15rem, 7.2vw, 2.85rem);
+  font-size: clamp(1.35rem, 8.5vw, 3.5rem);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.45;
   letter-spacing: 0.04em;
   color: #fff;
   text-align: left;
@@ -146,11 +233,26 @@ body.is-detail-open .scene-character {
 }
 
 .top-welcome__line {
-  display: block;
+  display: grid;
+  width: 100%;
+  text-align: left;
 }
 
-.top-welcome__line--indent {
-  padding-left: 2.8em;
+.top-welcome__line::before {
+  content: attr(data-text);
+  grid-area: 1 / 1;
+  visibility: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.top-welcome__typing {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+
+.top-welcome__line--center {
+  text-align: center;
 }
 
 .top-welcome__cursor {
@@ -170,6 +272,40 @@ body.is-detail-open .scene-character {
 }
 
 body.is-detail-open .top-welcome {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ========================================
+   トップ: サイト名（右上・8bit風）
+   ======================================== */
+.top-brand {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  z-index: 3;
+  margin: 0;
+  max-width: min(46vw, 360px);
+  font-family: var(--font-8bit);
+  font-size: clamp(0.5rem, 2.2vw, 0.85rem);
+  line-height: 1.55;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-align: right;
+  text-shadow:
+    3px 0 0 #000,
+    -3px 0 0 #000,
+    0 3px 0 #000,
+    0 -3px 0 #000,
+    3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000,
+    -3px 3px 0 #000;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+body.is-detail-open .top-brand {
   opacity: 0;
   visibility: hidden;
 }
@@ -1335,13 +1471,16 @@ body.is-detail-open .command-panel
     top: 16%;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 88vw;
-    font-size: clamp(0.9rem, 5.5vw, 1.85rem);
-    line-height: 1.55;
+    max-width: 92vw;
+    font-size: clamp(1rem, 6.5vw, 2.4rem);
+    line-height: 1.5;
   }
 
-  .top-welcome__line--indent {
-    padding-left: 2.4em;
+  .top-brand {
+    top: 2%;
+    right: 4%;
+    max-width: 52vw;
+    font-size: clamp(0.42rem, 2.6vw, 0.65rem);
   }
 
   .command-panel {
@@ -1498,7 +1637,9 @@ body.is-detail-open .command-panel
   .scene-character,
   body.is-detail-open .scene-character,
   .detail-panel,
-  .detail-panel__body {
+  .detail-panel__body,
+  .load-screen,
+  body:not(.is-loading) #app {
     transition: none;
   }
 }

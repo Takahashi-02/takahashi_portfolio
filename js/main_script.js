@@ -18,6 +18,10 @@ const FADE_MS = 250;
 const CONTENT_FADE_MS = 200;
 const WELCOME_CHAR_MS = 52;
 const WELCOME_LINE_PAUSE_MS = 300;
+const LOAD_STEP_MS = 28;
+const LOAD_MIN_MS = 2600;
+const LOAD_FADE_MS = 700;
+const LOAD_PRELOAD_MAX = 92;
 let isTransitioning = false;
 let welcomeTypingToken = 0;
 let currentBgIndex = 1;
@@ -151,13 +155,26 @@ function createWelcomeCursor() {
   return cursor;
 }
 
+function getWelcomeTypingTarget(line) {
+  let target = line.querySelector('.top-welcome__typing');
+  if (!target) {
+    target = document.createElement('span');
+    target.className = 'top-welcome__typing';
+    line.appendChild(target);
+  }
+  return target;
+}
+
 function resetWelcomeLines() {
   const welcome = document.querySelector('.top-welcome');
   if (!welcome) return;
 
   welcome.classList.remove('is-typing', 'is-complete');
   welcome.querySelectorAll('.top-welcome__line[data-text]').forEach((line) => {
-    line.textContent = '';
+    const typing = line.querySelector('.top-welcome__typing');
+    if (typing) {
+      typing.textContent = '';
+    }
   });
 }
 
@@ -178,7 +195,7 @@ async function playWelcomeTypewriter() {
 
   if (prefersReducedMotion()) {
     lines.forEach((line) => {
-      line.textContent = line.dataset.text || '';
+      getWelcomeTypingTarget(line).textContent = line.dataset.text || '';
     });
     welcome.classList.add('is-complete');
     return;
@@ -192,13 +209,14 @@ async function playWelcomeTypewriter() {
     const line = lines[lineIndex];
     const text = line.dataset.text || '';
     const isLastLine = lineIndex === lines.length - 1;
+    const typing = getWelcomeTypingTarget(line);
     const cursor = createWelcomeCursor();
 
-    line.appendChild(cursor);
+    typing.appendChild(cursor);
 
     for (const char of text) {
       if (token !== welcomeTypingToken) return;
-      line.insertBefore(document.createTextNode(char), cursor);
+      typing.insertBefore(document.createTextNode(char), cursor);
       await wait(WELCOME_CHAR_MS);
     }
 
@@ -212,6 +230,86 @@ async function playWelcomeTypewriter() {
 
   welcome.classList.remove('is-typing');
   welcome.classList.add('is-complete');
+}
+
+function updateLoadProgress(value) {
+  const fill = document.querySelector('.load-screen__gauge-fill');
+  const percentLabel = document.querySelector('.load-screen__percent');
+
+  if (fill) {
+    fill.style.width = `${value}%`;
+  }
+
+  if (percentLabel) {
+    percentLabel.textContent = `${value}%`;
+  }
+}
+
+function preloadCriticalAssets() {
+  const urls = [
+    'assets/images/bg_1.png',
+    'assets/images/floor.png',
+    'assets/images/character.png',
+  ];
+
+  return Promise.all(
+    urls.map(
+      (url) =>
+        new Promise((resolve) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = resolve;
+          img.src = url;
+        })
+    )
+  );
+}
+
+async function initLoadScreen() {
+  const loadScreen = document.getElementById('load-screen');
+
+  if (!loadScreen) {
+    document.body.classList.remove('is-loading');
+    playWelcomeTypewriter();
+    return;
+  }
+
+  if (prefersReducedMotion()) {
+    document.body.classList.remove('is-loading');
+    loadScreen.remove();
+    playWelcomeTypewriter();
+    return;
+  }
+
+  updateLoadProgress(0);
+
+  const preloadPromise = preloadCriticalAssets();
+  const minTimePromise = wait(LOAD_MIN_MS);
+
+  let progress = 0;
+
+  while (progress < LOAD_PRELOAD_MAX) {
+    progress += 1;
+    updateLoadProgress(progress);
+    await wait(LOAD_STEP_MS);
+  }
+
+  await Promise.all([preloadPromise, minTimePromise]);
+
+  while (progress < 100) {
+    progress += 1;
+    updateLoadProgress(progress);
+    await wait(LOAD_STEP_MS);
+  }
+
+  await wait(350);
+
+  loadScreen.classList.add('is-hidden');
+  document.body.classList.remove('is-loading');
+
+  await wait(LOAD_FADE_MS);
+  loadScreen.remove();
+  playWelcomeTypewriter();
 }
 
 async function showScreen(name) {
@@ -362,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () =>
     });
 
     initSkillsPanel();
-    playWelcomeTypewriter();
+    initLoadScreen();
 
 });
 

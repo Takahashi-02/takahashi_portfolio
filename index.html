@@ -30,7 +30,19 @@
 
 
 </head>
-<body>
+<body class="is-loading">
+
+  <div class="load-screen" id="load-screen" role="status" aria-live="polite" aria-label="読み込み中">
+    <div class="load-screen__panel">
+      <p class="load-screen__title">Now Loading<span class="load-screen__dots" aria-hidden="true">...</span></p>
+      <div class="load-screen__gauge" aria-hidden="true">
+        <div class="load-screen__gauge-track">
+          <div class="load-screen__gauge-fill"></div>
+        </div>
+      </div>
+      <p class="load-screen__percent">0%</p>
+    </div>
+  </div>
 
   <!--
     #app … サイト全体の入れ物（将来、詳細画面などもここに増やす）
@@ -62,11 +74,19 @@
       <img class="scene-character" src="assets/images/character.png" alt="キャラクター" />
 
       <!-- レイヤー2.5: トップウェルカム文 -->
-      <h1 class="top-welcome" aria-label="Welcome to my Portfolio">
-        <span class="top-welcome__line" data-text="Welcome"></span>
-        <span class="top-welcome__line top-welcome__line--indent" data-text="to"></span>
-        <span class="top-welcome__line" data-text="my Portfolio"></span>
+      <h1 class="top-welcome" aria-label="Welcome to My Portfolio">
+        <span class="top-welcome__line top-welcome__line--center" data-text="Welcome">
+          <span class="top-welcome__typing"></span>
+        </span>
+        <span class="top-welcome__line top-welcome__line--center" data-text="to">
+          <span class="top-welcome__typing"></span>
+        </span>
+        <span class="top-welcome__line" data-text="My Portfolio">
+          <span class="top-welcome__typing"></span>
+        </span>
       </h1>
+
+      <p class="top-brand">Takahashi Yuki Portfolio</p>
 
       <!-- レイヤー3: コマンドパネル（TOP のみ表示・Phase 3 で動かす） -->
       <aside class="command-panel" aria-label="RPG風コマンドメニュー">
@@ -146,7 +166,7 @@
         <div class="tool-gauge">
           <div class="tool-gauge__label">
             <span class="tool-gauge__name">C++</span>
-            <span class="tool-gauge__months">24ヶ月</span>
+            <span class="tool-gauge__months">15ヶ月</span>
           </div>
           <div class="tool-gauge__track">
             <div class="tool-gauge__fill" style="--rate: 100%"></div>
@@ -156,41 +176,32 @@
         <div class="tool-gauge">
           <div class="tool-gauge__label">
             <span class="tool-gauge__name">DXライブラリ</span>
-            <span class="tool-gauge__months">20ヶ月</span>
+            <span class="tool-gauge__months">13ヶ月</span>
           </div>
           <div class="tool-gauge__track">
-            <div class="tool-gauge__fill" style="--rate: 83%"></div>
+            <div class="tool-gauge__fill" style="--rate: 87%"></div>
           </div>
         </div>
 
         <div class="tool-gauge">
-          
           <div class="tool-gauge__label">
-            <span class="tool-gauge__name">Unity / Unreal Engine</span>
-            <span class="tool-gauge__months">6ヶ月</span>
+            <span class="tool-gauge__name">Unity</span>
+            <span class="tool-gauge__months">13ヶ月</span>
           </div>
-          
           <div class="tool-gauge__track">
-            <div class="tool-gauge__fill tool-gauge__fill--learning" style="--rate: 25%"></div>
+            <div class="tool-gauge__fill" style="--rate: 87%"></div>
           </div>
-        
         </div>
 
-          <div class="tool-gauge">
-         
+        <div class="tool-gauge">
           <div class="tool-gauge__label">
-          
-          <span class="tool-gauge__name">その他ツール（GIMP 等）</span>
-          
-          <span class="tool-gauge__months">12ヶ月</span>
-    
-    </div>
-          
-    <div class="tool-gauge__track">
-      <div class="tool-gauge__fill" style="--rate: 50%"></div>
-    </div>
-        
-  </div>
+            <span class="tool-gauge__name">Unreal Engine</span>
+            <span class="tool-gauge__months">13ヶ月</span>
+          </div>
+          <div class="tool-gauge__track">
+            <div class="tool-gauge__fill" style="--rate: 87%"></div>
+          </div>
+        </div>
 
   <div class="about-summary__more">
     <button type="button" class="btn-more" data-screen="about-more">MORE</button>
@@ -252,7 +263,7 @@
           </div>
     
       <aside class="bio-era__art" aria-hidden="true">
-      <img src="assets/images/character.png" alt="" />
+      <img src="assets/images/ready_3.png" alt="画像準備中" />
       </aside>
   
   </article>
@@ -269,7 +280,7 @@
     </div>
 
     <aside class="bio-era__art" aria-hidden="true">
-      <img src="assets/images/character.png" alt="" />
+      <img src="assets/images/ready_3.png" alt="画像準備中" />
     </aside>
   
   </article>
@@ -288,7 +299,7 @@
     </div>
     
     <aside class="bio-era__art" aria-hidden="true">
-      <img src="assets/images/character.png" alt="" />
+      <img src="assets/images/ready_3.png" alt="画像準備中" />
     </aside>
   
   </article>
@@ -302,7 +313,7 @@
     </div>
     
     <aside class="bio-era__art" aria-hidden="true">
-      <img src="assets/images/character.png" alt="" />
+      <img src="assets/images/ready_3.png" alt="画像準備中" />
     </aside>
   
   </article>
@@ -365,7 +376,7 @@
 
       <aside class="about-value-character" aria-hidden="true">
 
-        <img src="assets/images/character.png" alt="" />  
+        <img src="assets/images/ready_3.png" alt="画像準備中" />  
       
       </aside>
 
@@ -437,7 +448,7 @@
       
       <aside class="about-value-character" aria-hidden="true">
       
-        <img src="assets/images/character.png" alt="" /> 
+        <img src="assets/images/ready_3.png" alt="画像準備中" /> 
       
       </aside>
 
@@ -503,7 +514,7 @@
       
       <aside class="about-value-character" aria-hidden="true">
 
-        <img src="assets/images/character.png" alt="" />
+        <img src="assets/images/ready_3.png" alt="画像準備中" />
 
       </aside>
 
