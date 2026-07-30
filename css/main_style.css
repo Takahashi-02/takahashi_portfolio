@@ -836,10 +836,7 @@ body.is-detail-open .command-panel
 }
 
 .about-bio__header {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: transparent;              /* 黒い枠を消す */
+  position: static;
   padding: 12px 0 8px;
   margin-bottom: 0;
 }
@@ -1738,5 +1735,42 @@ body.is-detail-open .command-panel
 
   .bio-era__art img {
     margin: 0 auto;
+  }
+}
+
+/* ========================================
+   フッター（コピーライト）
+   ======================================== */
+.site-footer {
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  margin: 0;
+  padding: 0 12px;
+  font-family: var(--font-rpg);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow:
+    1px 0 0 #000,
+    -1px 0 0 #000,
+    0 1px 0 #000,
+    0 -1px 0 #000;
+  text-align: center;
+  pointer-events: none;
+}
+
+.site-footer small {
+  font-size: inherit;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    bottom: 1%;
+    width: min(92vw, 420px);
+    font-size: 0.65rem;
+    line-height: 1.5;
   }
 }
